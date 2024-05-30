@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/eliminarSeleccionados', [AdminController::class, 'eliminarSeleccionados'])->name('eliminarSeleccionados');
 
     // OBRAS
+    Route::post('/admin/verificar-categoria', [CategoriaController::class, 'verificarCategoria'])->name('verificarCategoria');
     Route::get('/subirObraForm', [CategoriaController::class, 'getSubirObraForm'])->name('subirObraForm');
     Route::post('/subirObra', [ObraController::class, 'crearObra'])->name('subirObra.crearObra');
     Route::get('/subcategorias/{categoria}', [CategoriaController::class, 'getSubcategorias']);
