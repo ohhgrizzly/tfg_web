@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+
+class ObraServiceProvider extends ServiceProvider
+{
+    /**
+     * Register services.
+     */
+    public function register()
+{
+    // Por ejemplo, enlazar un servicio relacionado con categorías:
+    $this->app->singleton(\App\Services\ObrasService::class, function ($app) {
+        return new \App\Services\ObrasService();
+    });
+}
+
+    /**
+     * Bootstrap services.
+     */
+    public function boot()
+{
+    // Por ejemplo, compartir datos con todas las vistas relacionados con categorías:
+    \View::share('obras', \App\Models\Obra::all());
+}
+}

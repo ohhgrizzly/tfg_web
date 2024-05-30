@@ -1,0 +1,74 @@
+.stars {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .stars input[type="radio"] {
+    display: none;
+  }
+  
+  .stars label {
+    float: right;
+    padding: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .stars label:before {
+    content: '\2606'; /* Unicode character for empty star */
+    font-size: 32px; /* Tamaño aumentado de la estrella */
+    color: rgba(255, 215, 0, 0.5); /* Color más visible con transparencia */
+    text-shadow: 0 0 2px rgba(255, 215, 0, 0.8); /* Sombra para resaltar */
+  }
+  
+  .stars input[type="radio"]:checked ~ label:before,
+  .stars label:hover:before {
+    content: '\2605'; /* Unicode character for filled star */
+    color: rgba(255, 215, 0, 1); /* Color más brillante para estrella rellena */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 1); /* Sombra más pronunciada */
+  }
+
+  .comment {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+  }
+  
+  .respuesta {
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa; /* Fondo diferente para distinguir respuestas */
+  }
+  
+
+  .list-container {
+    overflow-y: scroll;
+    max-height: 80vh;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.list-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-container li {
+    margin-bottom: 10px;
+}
+
+.subcategories-list {
+  margin-left: 40px; /* Aumenta el margen izquierdo para mover las subcategorías más a la derecha */
+  list-style-type: disc; /* Cambia el estilo de lista para distinguir las subcategorías */
+}
+
+#categorias-bloque {
+  margin-top: 7em; /* Puedes ajustar este valor según sea necesario */
+}
+
+  
