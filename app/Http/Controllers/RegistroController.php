@@ -16,7 +16,7 @@ class RegistroController extends Controller
      */
     public function vistaRegistro()
     {
-        dd('sadsasadsa');
+
         return view('registroForm');
     }
 
