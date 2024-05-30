@@ -1,6 +1,9 @@
 @include('header')
 
 <body class="h-100">
+    <!-- Agregar esto en algún lugar de tu vista -->
+<div id="jsonResponse"></div>
+
     <div class="container-fluid full-bg h-100">
         <div class="container h-100">
             <div class="row no-margin h-100">
