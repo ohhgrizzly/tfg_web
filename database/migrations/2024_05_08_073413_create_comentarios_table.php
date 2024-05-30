@@ -15,7 +15,7 @@ class CreateComentariosTable extends Migration
             $table->id();
             $table->timestamps();
             $table->text('contenido');
-            $table->unsignedTinyInteger('valoracion')->nullable()->default(null);
+            $table->unsignedTinyInteger('valoracion')->nullable();
             $table->foreignId('id_comentario_padre')->nullable()->constrained('comentarios')->onDelete('cascade');
             $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
             $table->foreignId('id_obra')->constrained('obras')->onDelete('cascade');
