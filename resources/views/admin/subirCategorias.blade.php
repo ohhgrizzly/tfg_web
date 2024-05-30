@@ -1,9 +1,6 @@
 @include('header')
 
 <body class="h-100">
-    <!-- Agregar esto en algún lugar de tu vista -->
-<div id="jsonResponse"></div>
-
     <div class="container-fluid full-bg h-100">
         <div class="container h-100">
             <div class="row no-margin h-100">
@@ -203,15 +200,27 @@
                             tipo: document.getElementById('tipo').value,
                             epoca: document.getElementById('epoca').value,
                         })
-                    }).then(response => response.json())
-        .then(data => {
-            // Mostrar el JSON en la página
-            document.getElementById('jsonResponse').textContent = JSON.stringify(data, null, 2);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al enviar el formulario.');
-        });
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(err => {
+                                throw new Error(err.error || 'Hubo un error al enviar el formulario.');
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else if (data.success) {
+                            alert(data.success);
+                            location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert(error.message || 'Hubo un error al enviar el formulario.');
+                    });
                 });
             }
         });
