@@ -21,10 +21,10 @@ class ComentarioFactory extends Factory
         $usuariosIds = DB::table('usuarios')->pluck('id');
 
         return [
-            'detallado' => $this->faker->paragraph(),
-            'puntuacion' => $this->faker->numberBetween(1, 5),
-            'id_obra' => $this->faker->randomElement($obrasIds),
-            'id_usuario' => $this->faker->randomElement($usuariosIds),
+            'detallado' => fake()->paragraph(),
+            'puntuacion' => fake()->numberBetween(1, 5),
+            'id_obra' => fake()->randomElement($obrasIds),
+            'id_usuario' => fake()->randomElement($usuariosIds),
         ];
     }
 }
