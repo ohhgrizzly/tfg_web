@@ -18,7 +18,7 @@
                             <a href="{{ route('admin.usuario.detalle', $usuario->id) }}">
                                 <div class="member" data-aos="zoom-in">
                                     <div class="member-img">
-                                        <img src="{{ asset('assets/img/imagenesPerfil/' . $usuario->imagenPerfil) }}" class="img-fluid rounded-circle" alt="">
+                                        <img src="{{ secure_asset('assets/img/imagenesPerfil/' . $usuario->imagenPerfil) }}" class="img-fluid rounded-circle" alt="">
                                         <div class="social">
                                             <a href="{{ route('admin.usuario.detalle', $usuario->id) }}">Modificar</a>                                        
                                         </div>
