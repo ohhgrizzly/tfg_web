@@ -215,6 +215,7 @@
     }
 });
 
+
     </script>
 
     @include('footer')
