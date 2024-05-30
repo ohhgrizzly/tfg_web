@@ -283,11 +283,27 @@ public function obrasSubirCategoria(){
         return view('/admin/subirCategorias', compact('usuario', 'obras', 'categorias'));
     }
 }
-/*
 
+public function verificarCategoria(Request $request)
+{
+    $usuarioActual = Auth::user();
+    if ($usuarioActual->esAdmin != 1) {
+        abort(403, 'Acceso denegado');
+    }
 
+    $request->validate([
+        'formato' => 'required|max:255',
+    ]);
 
-*/
+    $formato = $request->input('formato');
+
+    // Verificar si la categoría ya existe en la base de datos
+    $categoriaExistente = Categoria::where('formato', $formato)->exists();
+
+    // Devolver la respuesta adecuada en formato JSON
+    return response()->json(['exists' => $categoriaExistente]);
+}
+
 
     public function crearCategoria(Request $request)
     {
