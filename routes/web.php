@@ -83,16 +83,8 @@ Route::get('/', function () {
 Route::get('/', [ObraController::class, 'mostrarObras'])->name('index');
 
 // REEGISTRO
-Route::prefix('registro')->name('registro.')->group(function () {
-    Route::get('/', [RegistroController::class, 'crear'])->name('crear');
-    Route::post('/', [RegistroController::class, 'crearUsuario'])->name('crearUsuario');
-    
-});
-
-Route::get('/registro', function () {
-    return view('registroForm', ['titulo' => 'Registro']);
-})->name('registro');
-
+Route::get('/registroForm', [RegistroController::class, 'vistaRegistro'])->name('registro');
+Route::post('/subirUsuarioRegistro', [RegistroController::class, 'crearUsuario'])->name('crearUsuario');
 Route::get('/cerrar-sesion', [InicioController::class, 'cerrarSesion'])->name('cerrar_sesion');
 
 
