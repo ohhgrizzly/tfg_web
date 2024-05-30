@@ -9,7 +9,7 @@
 
         <div class="row justify-content-center">
           <div class="col-lg-6">
-            <a href="#header" class="scrollto footer-logo"><img src="{{ asset('assets/img/hero-logo.png') }}" alt=""></a>
+            <a href="#header" class="scrollto footer-logo"><img src="{{ secure_asset('assets/img/hero-logo.png') }}" alt=""></a>
             <h3>Art&eacute;ria</h3>
             <p>Cualquier forma de contacto a trav&eacute;s de nuestras redes sociales o p&aacute;gina de contacto. Nos pondremos en contacto con usted ¡lo antes posible!</p>
           </div>
