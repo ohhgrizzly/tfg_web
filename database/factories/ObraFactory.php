@@ -17,8 +17,8 @@ class ObraFactory extends Factory
     public function definition(): array
     {
         return [
-            'titulo' => $this->faker->sentence,
-            'descripcion' => $this->faker->paragraph,
+            'titulo' => fake()->paragraph,
+            'descripcion' => fake()->paragraph,
             /*'imagen' => $this->faker->imageUrl(),*/
             'id_usuario' => Usuario::factory()->create()->id,
             /*'subcategoria_id' => Subcategoria::factory()->create()->id,
