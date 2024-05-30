@@ -23,7 +23,7 @@ class ObraFactory extends Factory
             'id_usuario' => Usuario::factory()->create()->id,
             /*'subcategoria_id' => Subcategoria::factory()->create()->id,
             */
-            'autor' => $this->faker->sentence,
+            'autor' => fake()->sentence,
         ];
     }
 }
