@@ -28,7 +28,7 @@ class RegistroController extends Controller
      */
     public function crearUsuario(Request $request)
     {
-        
+        dd($request->all());
         // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
