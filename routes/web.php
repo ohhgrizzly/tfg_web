@@ -44,11 +44,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/admin/crearCategoria', [AdminController::class, 'crearCategoria'])->name('crearCategoria');
     Route::post('/admin/crearSubcategoria', [AdminController::class, 'crearSubcategoria'])->name('crearSubcategoria');
-    Route::post('/admin/verificar-categoria', [AdminController::class, 'verificarExistenciaCategoria'])->name('verificar_categoria');
+    Route::post('/admin/verificar-categoria', [CategoriaController::class, 'verificarCategoria'])->name('verificarCategoria');
     Route::delete('/admin/eliminarSeleccionados', [AdminController::class, 'eliminarSeleccionados'])->name('eliminarSeleccionados');
 
     // OBRAS
-    Route::post('/admin/verificar-categoria', [CategoriaController::class, 'verificarCategoria'])->name('verificarCategoria');
+    
     Route::get('/subirObraForm', [CategoriaController::class, 'getSubirObraForm'])->name('subirObraForm');
     Route::post('/subirObra', [ObraController::class, 'crearObra'])->name('subirObra.crearObra');
     Route::get('/subcategorias/{categoria}', [CategoriaController::class, 'getSubcategorias']);
