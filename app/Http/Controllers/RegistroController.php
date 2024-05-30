@@ -27,7 +27,7 @@ class RegistroController extends Controller
      */
     public function crearUsuario(Request $request)
     {
-        dd('FUNCIONA');
+        
         // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
@@ -68,10 +68,12 @@ class RegistroController extends Controller
         $correoExistente = Usuario::where('correo', $request->input('correo'))->exists();
 
         if ($nombreUsuarioExistente) {
+            dd('Nombre en uso');
             return redirect()->back()->with('error', 'El nombre de usuario ya está en uso.');
         }
 
         if ($correoExistente) {
+             dd('Correo en uso');
             return redirect()->back()->with('error', 'El correo electrónico ya está en uso.');
         }
             // Crear un nuevo usuario con los datos del formulario
@@ -119,8 +121,9 @@ class RegistroController extends Controller
                     $usuario->imagenPerfil = $nombre;
                 }
             }
-
+             
             $usuario->save();
+            dd($usuario);
 
             // Autenticar al usuario y redirigir
             Auth::login($usuario);
