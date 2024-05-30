@@ -7,7 +7,7 @@
                 <div class="bg-layer d-flex col-md-4">
                     <div class="login-box row">
                         <h3>Registrarme</h3>
-                        <form method="POST" action="{{ route('registro.crearUsuario') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ secure_url(route('registro.crearUsuario')) }}" enctype="multipart/form-data">
                             @csrf <!-- token CSRF -->
 
                             <div class="input-group mb-3">
@@ -69,7 +69,7 @@
                             </div>
                             <button type="submit" class="btn btn-success">Registrarme</button>
                         </form>
-                        <p class="no-c">¿Ya tienes una cuenta? <a href="{{ route('login') }}">Iniciar Sesión</a></p>
+                        <p class="no-c">¿Ya tienes una cuenta? <a href="{{ secure_url(route('login')) }}">Iniciar Sesión</a></p>
 
                     </div>
                 </div>
