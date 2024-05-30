@@ -32,7 +32,7 @@
                                         <option value="{{ $categoria->id }}">{{ $categoria->formato }}</option>
                                     @endforeach
                                     <option value="add_new" class="text-primary font-weight-bold">
-                                        Añadir nueva categoría
+                                     Añadir nueva categoría
                                     </option>
                                 </select>
                             </div>
@@ -41,32 +41,32 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Tema" name="tema" aria-label="Tema" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Tema" id="tema" name="tema" aria-label="Tema" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Material" name="material" aria-label="Material" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Material" id="material" name="material" aria-label="Material" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Tipo" name="tipo" aria-label="Tipo" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Tipo" id="tipo" name="tipo" aria-label="Tipo" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Época" name="epoca" aria-label="Epoca" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="Época" id="epoca" name="epoca" aria-label="Epoca" aria-describedby="basic-addon1">
                             </div>
 
                             <button type="submit" class="btn btn-success">Subir Subcategoría</button>
                         </form>
                         <p class="no-c"><a href="{{ route('index') }}">Volver</a></p>
                     </div>
-                </div>
+                </div> 
                 <div class="col-md-8" id="categorias-bloque">
                     <div class="bg-layer">
                         <div class="p-1">
@@ -93,30 +93,31 @@
                                         @endforeach
                                     </ul>
                                     <div class="text-center mt-3">
-                                        <button id="eliminarSeleccionados" type="submit" class="btn btn-danger" disabled>Eliminar Seleccionados</button>
+                                        <button type="submit" class="btn btn-danger" id="eliminarSeleccionados">Eliminar Seleccionados</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>   
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var esAdmin = {{ Auth::check() && Auth::user()->esAdmin ? 'true' : 'false' }};
-            var crearCategoriaUrl = '{{ route("crearCategoria") }}';
-            var csrfToken = '{{ csrf_token() }}';
+        var esAdmin = {{ Auth::check() && Auth::user()->esAdmin ? 'true' : 'false' }};
+        var crearCategoriaUrl = '{{ route("crearCategoria") }}';
+        var csrfToken = '{{ csrf_token() }}';
 
-            document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-                checkbox.addEventListener('change', () => {
-                    const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
-                    document.getElementById('eliminarSeleccionados').disabled = checkedCount === 0;
-                });
+        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                document.getElementById('eliminarSeleccionados').disabled = checkedCount === 0;
             });
+        });
 
+        document.addEventListener('DOMContentLoaded', function () {
             var categoriaSelect = document.getElementById('categoria');
             if (categoriaSelect) {
                 categoriaSelect.addEventListener('change', function () {
@@ -127,6 +128,7 @@
                                 alert('Acceso denegado');
                                 return;
                             }
+                            // Verificar la existencia de la categoría
                             fetch('/admin/verificar-categoria', {
                                 method: 'POST',
                                 headers: {
@@ -140,6 +142,7 @@
                                 if (data.exists) {
                                     alert('Error: Esta categoría ya existe.');
                                 } else {
+                                    // Si la categoría no existe, enviar el formulario para crearla
                                     fetch(crearCategoriaUrl, {
                                         method: 'POST',
                                         headers: {
@@ -152,7 +155,7 @@
                                     .then(data => {
                                         if (data.success) {
                                             alert(data.message);
-                                            location.reload();
+                                            location.reload(); // Recargar la página para actualizar el desplegable
                                         } else {
                                             alert('Hubo un error al crear la categoría.');
                                         }
@@ -171,38 +174,43 @@
                     }
                 });
             }
+        });
 
-            document.getElementById('subcategoriaForm').addEventListener('submit', function (event) {
-                event.preventDefault();
+        document.addEventListener('DOMContentLoaded', function () {
+            var subcategoriaForm = document.getElementById('subcategoriaForm');
+            if (subcategoriaForm) {
+                subcategoriaForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
 
-                fetch('/admin/crearSubcategoria', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        categoria: document.getElementById('categoria').value,
-                        tema: document.getElementById('tema').value,
-                        material: document.getElementById('material').value,
-                        tipo: document.getElementById('tipo').value,
-                        epoca: document.getElementById('epoca').value,
+                    fetch('/admin/crearSubcategoria', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            categoria: document.getElementById('categoria').value,
+                            tema: document.getElementById('tema').value,
+                            material: document.getElementById('material').value,
+                            tipo: document.getElementById('tipo').value,
+                            epoca: document.getElementById('epoca').value,
+                        })
                     })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        alert(data.error);
-                    } else if (data.success) {
-                        alert(data.success);
-                        location.reload();
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Hubo un error al enviar el formulario.');
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                        } else if (data.success) {
+                            alert(data.success);
+                            location.reload();
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Hubo un error al enviar el formulario.');
+                    });
                 });
-            });
+            }
         });
     </script>
 
