@@ -351,28 +351,28 @@ public function verificarCategoria(Request $request)
     ]);
 
     // Verificar si ya existe una subcategoría con los mismos detalles en la categoría seleccionada
-    $subcategoriaExistente = Subcategoria::where('categoria_id', $request->input('categoria'))
-                                          ->where('tema', $request->input('tema'))
-                                          ->where('material', $request->input('material'))
-                                          ->where('tipo', $request->input('tipo'))
-                                          ->where('epoca', $request->input('epoca'))
-                                          ->first();
+        $subcategoriaExistente = Subcategoria::where('categoria_id', $request->input('categoria'))
+                                              ->where('tema', $request->input('tema'))
+                                              ->where('material', $request->input('material'))
+                                              ->where('tipo', $request->input('tipo'))
+                                              ->where('epoca', $request->input('epoca'))
+                                              ->first();
 
-    if ($subcategoriaExistente) {
-        return response()->json(['error' => 'Ya existe una subcategoría con estos detalles en esta categoría'], 422);
+        if ($subcategoriaExistente) {
+            return response()->json(['error' => 'Ya existe una subcategoría con estos detalles en esta categoría'], 422);
+        }
+
+        // Si no existe, crear la subcategoría
+        $subcategoria = new Subcategoria();
+        $subcategoria->categoria_id = $request->input('categoria');
+        $subcategoria->tema = $request->input('tema');
+        $subcategoria->material = $request->input('material');
+        $subcategoria->tipo = $request->input('tipo');
+        $subcategoria->epoca = $request->input('epoca');
+        $subcategoria->save();
+
+        return response()->json(['success' => 'Subcategoría creada con éxito']);
     }
-
-    // Si no existe, crear la subcategoría
-    $subcategoria = new Subcategoria();
-    $subcategoria->categoria_id = $request->input('categoria');
-    $subcategoria->tema = $request->input('tema');
-    $subcategoria->material = $request->input('material');
-    $subcategoria->tipo = $request->input('tipo');
-    $subcategoria->epoca = $request->input('epoca');
-    $subcategoria->save();
-
-    return response()->json(['success' => 'Subcategoría creada con éxito'], 200);
-}
 
 
 
