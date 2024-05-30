@@ -10,7 +10,7 @@
                             <h3>Perfil de {{ $usuarioParticular->nombre }}</h3>
                             <div class="text-center mb-4">
                                 <!-- Mostrar imagen de perfil -->
-                                <img src="{{ asset('assets/img/imagenesPerfil/' . $usuarioParticular->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
+                                <img src="{{ secure_asset('assets/img/imagenesPerfil/' . $usuarioParticular->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
                             </div>                    
                             <form method="POST" action="{{ route('actualizarUsuario', $usuarioParticular->id) }}">
                                 @csrf
@@ -77,7 +77,7 @@
                                 <div class="col-lg-3 col-md-6 portfolio-item filter-{{ $obra->subcategoria->categoria->id }}">
                                     <div class="portfolio-wrap">
                                         <a href="{{ route('obras.mostrar', ['id' => $obra->id]) }}">
-                                            <img src="{{ asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
+                                            <img src="{{ secure_asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
                                             <div class="portfolio-info">
                                                 <h4>{{ $obra->titulo }}</h4>
                                             </div>
