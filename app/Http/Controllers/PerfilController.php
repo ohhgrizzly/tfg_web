@@ -43,12 +43,23 @@ class PerfilController extends Controller
     if (Auth::check()) {
         // Validar los datos del formulario
         $request->validate([
-            'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
-            'nombre' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
-            'apellidos' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
+            'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9\s]+$/',
+            'nombre' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
+            'apellidos' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
-            'telefono' => 'nullable|numeric|unique:usuarios,telefono,' . Auth::id(),
+            'telefono' => 'nullable|numeric|regex:/^[a-zA-Z0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
+        ], [
+            'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
+            'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
+            'nombre_usuario.min' => '- El nombre de usuario debe tener al menos :min caracteres.',
+            'nombre.regex' => '- El nombre no puede contener caracteres especiales.',
+            'apellidos.regex' => '- Los apellidos no puede contener caracteres especiales.',
+            'contrasena.required' => '- La contraseña es obligatoria.',
+            'correo.email' => '- El correo electrónico no es válido.',
+            'correo.unique' => '- El correo electrónico ya está en uso.',
+            'telefono.unique' => '- El teléfono ya está en uso.',
+            'telefono.regex' => '- El teléfono no puede contener caracteres especiales o espacios en blanco.', 
         ]);
 
         // Obtener el usuario actualmente autenticado
