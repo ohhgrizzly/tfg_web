@@ -7,7 +7,7 @@
                 <div class="bg-layer d-flex col-md-4">
                     <div class="login-box row">
                         <h3>Subir Subcategoría</h3>
-                        <form method="POST" action="{{ route('crearSubcategoria') }}" enctype="multipart/form-data">
+                        <form id="subcategoriaForm" method="POST" action="{{ route('crearSubcategoria') }}" enctype="multipart/form-data">
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -28,13 +28,11 @@
                                 <label for="categoria">Categoría:</label>
                                 <select class="form-control" id="categoria" name="categoria">
                                     <option value="" disabled selected>Selecciona el formato</option>
-                                    @php
-                                    @endphp
                                     @foreach($categorias as $categoria)
                                         <option value="{{ $categoria->id }}">{{ $categoria->formato }}</option>
                                     @endforeach
                                     <option value="add_new" class="text-primary font-weight-bold">
-                                     Añadir nueva categoría
+                                        Añadir nueva categoría
                                     </option>
                                 </select>
                             </div>
@@ -68,7 +66,7 @@
                         </form>
                         <p class="no-c"><a href="{{ route('index') }}">Volver</a></p>
                     </div>
-                </div> 
+                </div>
                 <div class="col-md-8" id="categorias-bloque">
                     <div class="bg-layer">
                         <div class="p-1">
@@ -95,123 +93,117 @@
                                         @endforeach
                                     </ul>
                                     <div class="text-center mt-3">
-                                        <button type="submit" class="btn btn-danger">Eliminar Seleccionados</button>
+                                        <button id="eliminarSeleccionados" type="submit" class="btn btn-danger" disabled>Eliminar Seleccionados</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>   
             </div>
         </div>
     </div>
 
     <script>
-        var esAdmin = {{ Auth::check() && Auth::user()->esAdmin ? 'true' : 'false' }};
-        var crearCategoriaUrl = '{{ route("crearCategoria") }}';
-        var csrfToken = '{{ csrf_token() }}';
+        document.addEventListener('DOMContentLoaded', function () {
+            var esAdmin = {{ Auth::check() && Auth::user()->esAdmin ? 'true' : 'false' }};
+            var crearCategoriaUrl = '{{ route("crearCategoria") }}';
+            var csrfToken = '{{ csrf_token() }}';
 
-        document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
-            checkbox.addEventListener('change', () => {
-                const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
-                document.getElementById('eliminarSeleccionados').disabled = checkedCount === 0;
+            document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+                checkbox.addEventListener('change', () => {
+                    const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                    document.getElementById('eliminarSeleccionados').disabled = checkedCount === 0;
+                });
+            });
+
+            var categoriaSelect = document.getElementById('categoria');
+            if (categoriaSelect) {
+                categoriaSelect.addEventListener('change', function () {
+                    if (this.value === 'add_new') {
+                        var formato = prompt('Introduce el nuevo formato de categoría:');
+                        if (formato) {
+                            if (!esAdmin) {
+                                alert('Acceso denegado');
+                                return;
+                            }
+                            fetch('/admin/verificar-categoria', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken
+                                },
+                                body: JSON.stringify({ formato: formato })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.exists) {
+                                    alert('Error: Esta categoría ya existe.');
+                                } else {
+                                    fetch(crearCategoriaUrl, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': csrfToken
+                                        },
+                                        body: JSON.stringify({ formato: formato })
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            alert(data.message);
+                                            location.reload();
+                                        } else {
+                                            alert('Hubo un error al crear la categoría.');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                        alert('Hubo un error al crear la categoría.');
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Hubo un error al verificar la categoría.');
+                            });
+                        }
+                    }
+                });
+            }
+
+            document.getElementById('subcategoriaForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                fetch('/admin/crearSubcategoria', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({
+                        categoria: document.getElementById('categoria').value,
+                        tema: document.getElementById('tema').value,
+                        material: document.getElementById('material').value,
+                        tipo: document.getElementById('tipo').value,
+                        epoca: document.getElementById('epoca').value,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else if (data.success) {
+                        alert(data.success);
+                        location.reload();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un error al enviar el formulario.');
+                });
             });
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-  var categoriaSelect = document.getElementById('categoria');
-  if (categoriaSelect) {
-    categoriaSelect.addEventListener('change', function () {
-      if (this.value === 'add_new') {
-        var formato = prompt('Introduce el nuevo formato de categoría:');
-        if (formato) {
-          if (!esAdmin) {
-            alert('Acceso denegado');
-            return;
-        }
-          // Verificar la existencia de la categoría
-          fetch('/admin/verificar-categoria', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify({ formato: formato })
-          })
-          .then(response => response.json())
-          .then(data => {
-            if (data.exists) {
-              alert('Error: Esta categoría ya existe.');
-            } else {
-              // Si la categoría no existe, enviar el formulario para crearla
-              fetch(crearCategoriaUrl, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'X-CSRF-TOKEN': csrfToken
-                },
-                body: JSON.stringify({ formato: formato })
-              })
-              .then(response => response.json())
-              .then(data => {
-                if (data.success) {
-                  alert(data.message);
-                  location.reload(); // Recargar la página para actualizar el desplegable
-                } else {
-                  alert('Hubo un error al crear la categoría.');
-                }
-              })
-              .catch(error => {
-                console.error('Error:', error);
-                alert('Hubo un error al crear la categoría.');
-              });
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al verificar la categoría.');
-          });
-        }
-      }
-    });
-  }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('subcategoriaForm').addEventListener('submit', function (event) {
-      event.preventDefault();
-      
-      fetch('/admin/crearSubcategoria', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'X-CSRF-TOKEN': csrfToken
-          },
-          body: JSON.stringify({
-              categoria: document.getElementById('categoria').value,
-              tema: document.getElementById('tema').value,
-              material: document.getElementById('material').value,
-              tipo: document.getElementById('tipo').value,
-              epoca: document.getElementById('epoca').value,
-          })
-      })
-      .then(response => response.json())
-      .then(data => {
-          if (data.error) {
-              alert(data.error);
-          } else if (data.success) {
-              alert(data.success);
-              location.reload();
-          }
-      })
-      .catch(error => {
-          console.error('Error:', error);
-          alert('Hubo un error al enviar el formulario.');
-      });
-  });
-  
-});
     </script>
 
     @include('footer')
