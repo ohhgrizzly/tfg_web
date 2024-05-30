@@ -324,9 +324,10 @@ public function verificarCategoria(Request $request)
     public function crearSubcategoria(Request $request)
 {
     $usuarioActual = Auth::user();
-        if ($usuarioActual->esAdmin != 1) {
-            abort(403, 'Acceso denegado');
-        }else{
+    if ($usuarioActual->esAdmin != 1) {
+        return response()->json(['error' => 'Acceso denegado'], 403);
+    }
+
     $request->validate([
         'categoria' => 'required|exists:categorias,id',
         'tema' => 'required|string|min:3|regex:/^[a-zA-Z0-9\s]+$/',
@@ -334,19 +335,19 @@ public function verificarCategoria(Request $request)
         'tipo' => 'required|string|min:3|regex:/^[a-zA-Z0-9\s]+$/',
         'epoca' => 'required|string|min:3|regex:/^[a-zA-Z0-9\s]+$/',
     ], [
-        'categoria.required' => '- La categoria es obligatorio.',
+        'categoria.required' => '- La categoría es obligatoria.',
         'tema.required' => '- El tema es obligatorio.',
         'tema.regex' => '- El tema no puede contener caracteres especiales.',
-        'tipo.min' => '- La contraseña debe tener al menos :min caracteres.',
-        'material.required' => '- El material es obligatorios.',
+        'tema.min' => '- El tema debe tener al menos :min caracteres.',
+        'material.required' => '- El material es obligatorio.',
         'material.regex' => '- El material no puede contener caracteres especiales.',
-        'tipo.min' => '- La contraseña debe tener al menos :min caracteres.',
+        'material.min' => '- El material debe tener al menos :min caracteres.',
         'tipo.required' => '- El tipo es obligatorio.',
-        'tipo.min' => '- La contraseña debe tener al menos :min caracteres.',
         'tipo.regex' => '- El tipo no puede contener caracteres especiales.',
-        'epoca.required' => '- La epoca es obligatoria.',
-        'epoca.regex' => '- La epoca no puede contener caracteres especiales.',
-        'epoca.min' => '- La epoca debe tener al menos :min caracteres.',
+        'tipo.min' => '- El tipo debe tener al menos :min caracteres.',
+        'epoca.required' => '- La época es obligatoria.',
+        'epoca.regex' => '- La época no puede contener caracteres especiales.',
+        'epoca.min' => '- La época debe tener al menos :min caracteres.',
     ]);
 
     // Verificar si ya existe una subcategoría con los mismos detalles en la categoría seleccionada
@@ -370,9 +371,9 @@ public function verificarCategoria(Request $request)
     $subcategoria->epoca = $request->input('epoca');
     $subcategoria->save();
 
-    return redirect()->route('index')->with('success', 'Subcategoria creada con éxito');
+    return response()->json(['success' => 'Subcategoría creada con éxito'], 200);
 }
-}
+
 
 
 public function eliminarSeleccionados(Request $request)
