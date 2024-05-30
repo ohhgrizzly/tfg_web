@@ -374,21 +374,6 @@ public function verificarCategoria(Request $request)
 }
 }
 
-    public function verificarExistenciaCategoria(Request $request){
-        $usuarioActual = Auth::user();
-        if ($usuarioActual->esAdmin != 1) {
-            abort(403, 'Acceso denegado');
-        }else{
-        $formato = $request->input('formato');
-        $categoria = Categoria::where('formato', $formato)->first();
-
-        if ($categoria) {
-            return response()->json(['exists' => true]);
-        } else {
-            return response()->json(['exists' => false]);
-        }
-    }
-}
 
 public function eliminarSeleccionados(Request $request)
 {
