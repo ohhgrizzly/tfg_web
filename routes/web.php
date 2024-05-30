@@ -83,8 +83,11 @@ Route::get('/', function () {
 Route::get('/', [ObraController::class, 'mostrarObras'])->name('index');
 
 // REEGISTRO
-Route::get('/registroForm', [RegistroController::class, 'vistaRegistro'])->name('registro');
+Route::get('/registroForm', function () {
+    return view('registro', ['titulo' => 'Registro']);
+})->name('registro');
 Route::post('/subirUsuarioRegistro', [RegistroController::class, 'crearUsuario'])->name('crearUsuario');
+
 Route::get('/cerrar-sesion', [InicioController::class, 'cerrarSesion'])->name('cerrar_sesion');
 
 
