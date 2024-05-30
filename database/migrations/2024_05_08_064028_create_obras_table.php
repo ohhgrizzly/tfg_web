@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('titulo')->unique();
-            $table->text('descripcion')->default("Lorem Ipsum");
+            $table->text('descripcion');
             $table->string('imagen');
             $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
             $table->unsignedBigInteger('subcategoria_id')->constrained('subcategorias')->onDelete('cascade');
