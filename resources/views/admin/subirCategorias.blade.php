@@ -7,7 +7,7 @@
                 <div class="bg-layer d-flex col-md-4">
                     <div class="login-box row">
                         <h3>Subir Subcategoría</h3>
-                        <form id="subcategoriaForm" method="POST" action="{{ route('crearSubcategoria') }}" enctype="multipart/form-data">
+                        <form id="subcategoriaForm" method="POST" action="{{ secure_url(route('crearSubcategoria')) }}" enctype="multipart/form-data">
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
@@ -64,7 +64,7 @@
 
                             <button type="submit" class="btn btn-success">Subir Subcategoría</button>
                         </form>
-                        <p class="no-c"><a href="{{ route('index') }}">Volver</a></p>
+                        <p class="no-c"><a href="{{ secure_url(route('index')) }}">Volver</a></p>
                     </div>
                 </div> 
                 <div class="col-md-8" id="categorias-bloque">
@@ -73,7 +73,7 @@
                             <h2 class="mb-4">Categorías Existentes</h2>
                             <hr>
                             <div class="list-container" style="max-height: 60vh; overflow-y: auto;">
-                                <form method="POST" action="{{ route('eliminarSeleccionados') }}">
+                                <form method="POST" action="{{ secure_url(route('eliminarSeleccionados')) }}">
                                     @method('DELETE')
                                     @csrf
                                     <ul class="list-unstyled">
