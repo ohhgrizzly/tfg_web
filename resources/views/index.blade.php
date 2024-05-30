@@ -5,7 +5,7 @@
       <body>
         <section id="hero">
           <div class="hero-container">
-            <a href="{{ route('index') }}" class="hero-logo" data-aos="zoom-in"><img src="assets/img/hero-logo.png" alt=""></a>
+            <a href="{{ route('index') }}" class="hero-logo" data-aos="zoom-in"><img src="{{ secure_asset('assets/img/hero-logo.png') }}" alt=""></a>
             <h1 data-aos="zoom-in">Bienvenido a <strong>Art&eacute;ria</strong></h1>
             <h2 data-aos="fade-up">Donde cada obra es un latido de creatividad</h2>
             <a data-aos="fade-up" data-aos-delay="200" href="#portfolio" class="btn-get-started scrollto">Explorar</a>
@@ -39,7 +39,7 @@
                     <div class="col-lg-3 col-md-6 portfolio-item filter-{{ $obra->subcategoria->categoria->id }}">
                         <div class="portfolio-wrap">
                             <a href="{{ route('obras.mostrar', ['id' => $obra->id]) }}">
-                                <img src="{{ asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
+                                <img src="{{ secure_asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
                                 <div class="portfolio-info">
                                     <h4>{{ $obra->titulo }}</h4>
                                     <p>Autor: {{ $obra->autor }}</p>
@@ -74,7 +74,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in">
                     <div class="member-img">
-                      <img src="assets/img/team/escultura.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/escultura.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Compartir Obras</h3>
@@ -87,7 +87,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="100">
                     <div class="member-img">
-                      <img src="assets/img/team/vangogh.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/vangogh.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Descubrir Arte</h3>
@@ -100,7 +100,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="200">
                     <div class="member-img">
-                      <img src="assets/img/team/comunidad.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/comunidad.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Interactuar</h3>
