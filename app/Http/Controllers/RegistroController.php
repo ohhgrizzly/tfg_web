@@ -14,7 +14,7 @@ class RegistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function crear()
+    public function vistaRegistro()
     {
         return view('registroForm');
     }
