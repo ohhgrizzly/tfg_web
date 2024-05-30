@@ -17,7 +17,7 @@
               <div class="row">
                 <div class="col-lg-6" data-aos="fade-right">
                   <div class="image">
-                    <img src="assets/img/galeria1.jpg" class="img-fluid" alt="">
+                    <img src="{{ secure_asset('assets/img/galeria1.jpg') }}" class="img-fluid" alt="">
                   </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
@@ -65,7 +65,7 @@
                     <p>Fotograf&iacute;a para inmortalizar cada momento o expresar los sentimientos de cada persona</p>
                   </div>
                 </div>
-                <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("assets/img/services.jpg"); border-radius: 10px;' data-aos="fade-left" data-aos-delay="100"></div>
+                <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("{{ secure_asset('assets/img/services.jpg') }}"); border-radius: 10px;' data-aos="fade-left" data-aos-delay="100"></div>
               </div>
       
             </div>
@@ -80,17 +80,17 @@
                   <div class="tab-content">
                     <div class="tab-pane active show" id="tab-1">
                       <figure>
-                        <img src="assets/img/featured-1.jpg" alt="" class="img-fluid">
+                        <img src="{{ secure_asset('assets/img/featured-1.jpg') }}" alt="" class="img-fluid">
                       </figure>
                     </div>
                     <div class="tab-pane" id="tab-2">
                       <figure>
-                        <img src="assets/img/featured-2.jpg" alt="" class="img-fluid">
+                        <img src="{{ secure_asset('assets/img/featured-2.jpg') }}" alt="" class="img-fluid">
                       </figure>
                     </div>
                     <div class="tab-pane" id="tab-3">
                       <figure>
-                        <img src="assets/img/featured-3.jpg" alt="" class="img-fluid">
+                        <img src="{{ secure_asset('assets/img/featured-3.jpg') }}" alt="" class="img-fluid">
                       </figure>
                     </div>
                   </div>
@@ -171,8 +171,8 @@
       
                 </div>
       
-                <div class="col-lg-5 order-1 order-lg-2 align-items-stretch video-box" style='background-image: url("assets/img/primeraArteria.jpg"); border-radius: 10px;' data-aos="zoom-in">
-                  <a href="assets/img/videoArteria.webm" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                <div class="col-lg-5 order-1 order-lg-2 align-items-stretch video-box" style='background-image: url("{{ secure_asset('assets/img/primeraArteria.jpg') }}"); border-radius: 10px;' data-aos="zoom-in">
+                  <a href="{{ secure_asset('assets/img/videoArteria.webm') }}" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
                 </div>
       
               </div>
@@ -206,7 +206,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in">
                     <div class="member-img">
-                      <img src="assets/img/team/escultura.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/escultura.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Compartir Obras</h3>
@@ -219,7 +219,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="100">
                     <div class="member-img">
-                      <img src="assets/img/team/vangogh.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/vangogh.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Descubrir Arte</h3>
@@ -232,7 +232,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="200">
                     <div class="member-img">
-                      <img src="assets/img/team/comunidad.png" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/comunidad.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Interactuar</h3>
