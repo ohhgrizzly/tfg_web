@@ -17,7 +17,7 @@
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 d-flex align-items-stretch">
                                 <div class="member" data-aos="zoom-in">
                                     <div class="member-img">
-                                        <img src="{{ asset('assets/img/imagenesPerfil/' . $admins->imagenPerfil) }}" class="img-fluid" alt="">
+                                        <img src="{{ secure_asset('assets/img/imagenesPerfil/' . $admins->imagenPerfil) }}" class="img-fluid" alt="">
                                         <div class="social">
                                             <a href="#"><i class="bi bi-twitter"></i></a>
                                             <a href="#"><i class="bi bi-facebook"></i></a>
