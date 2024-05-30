@@ -203,7 +203,9 @@
                     })
                     .then(response => {
                         if (!response.ok) {
-                            throw new Error('Error en la respuesta del servidor');
+                            return response.json().then(err => {
+                                throw new Error(err.error || 'Hubo un error al enviar el formulario.');
+                            });
                         }
                         return response.json();
                     })
@@ -217,7 +219,7 @@
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert('Hubo un error al enviar el formulario.');
+                        alert(error.message || 'Hubo un error al enviar el formulario.');
                     });
                 });
             }
