@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
@@ -14,9 +15,8 @@ class RegistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function vistaRegistro()
+   public function verFormulario(): View
     {
-
         return view('registroForm');
     }
 
