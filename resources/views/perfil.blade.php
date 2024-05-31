@@ -86,12 +86,6 @@
                                 </div>
                                 <input type="text" class="form-control" placeholder="{{ Auth::user()->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-image"></i></span>
-                                </div>
-                                <input type="file" class="form-control" placeholder="Avatar" name="imagenPerfil" aria-label="Imagen" aria-describedby="basic-addon2">
-                            </div>
                                 <button type="submit" class="btn btn-success">Modificar</button>
                                 <p class="no-c">¿Deseas eliminar tu perfil? <button type="submit" formaction="{{ route('perfil_eliminar') }}" class="btn btn-danger">Eliminar perfil</button></p>
                             </form>
