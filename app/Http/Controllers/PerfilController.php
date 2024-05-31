@@ -49,7 +49,7 @@ class PerfilController extends Controller
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
             'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
-            'imagenPerfil' => 'image|mimes:jpeg,png,jpg|max:2048',
+            'imagenPerfil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
             'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
@@ -92,11 +92,11 @@ class PerfilController extends Controller
         if ($request->filled('telefono')) {
             $usuario->telefono = $request->telefono;
         }
-
+        dd($request->hasFile('imagenPerfil'));
+        
         // Manejar la subida de la imagen de perfil
         if ($request->hasFile('imagenPerfil')) {
             $imagenPerfil = $request->file('imagenPerfil');
-            dd($imagenPerfil);
             $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
             $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
 
