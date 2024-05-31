@@ -18,12 +18,7 @@
                                 <div class="member" data-aos="zoom-in">
                                     <div class="member-img">
                                         <img src="{{ secure_asset('storage/assets/img/imagenesPerfil/' . $admins->imagenPerfil) }}" class="img-fluid" alt="">
-                                        <div class="social">
-                                            <a href="#"><i class="bi bi-twitter"></i></a>
-                                            <a href="#"><i class="bi bi-facebook"></i></a>
-                                            <a href="#"><i class="bi bi-instagram"></i></a>
-                                            <a href="#"><i class="bi bi-linkedin"></i></a>
-                                        </div>
+                                        
                                     </div>
                                     <div class="member-info">
                                         <h4>{{ $admins->nombre_usuario }}</h4>
