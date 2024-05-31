@@ -36,6 +36,7 @@ class RegistroController extends Controller
             'apellidos.regex' => '- Los apellidos no pueden contener caracteres especiales.',
             'contrasena.required' => '- La contraseña es obligatoria.',
             'contrasena.min' => '- La contraseña debe tener al menos :min caracteres.',
+            'contrasena.confirmed' => '- Las contraseñas no coinciden.',
             'correo.required' => '- El correo electrónico es obligatorio.',
             'correo.email' => '- El correo electrónico no es válido.',
             'correo.unique' => '- El correo electrónico ya está en uso.',
