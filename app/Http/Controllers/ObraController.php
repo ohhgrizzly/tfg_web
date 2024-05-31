@@ -156,7 +156,7 @@ public function actualizarObraPerfil(Request $request, $id)
     {
         // Validar los datos del formulario
         $request->validate([
-            'titulo' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
+            'titulo' => 'nullable|unique:obras|regex:/^[a-zA-Z0-9\s]+$/',
             'descripcion' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'nullable',
@@ -164,7 +164,8 @@ public function actualizarObraPerfil(Request $request, $id)
             'autor' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
             
         ], [
-            'titulo.regex' => '- El titulo no puede contener caracteres especiales.',
+            'titulo.unique' => 'Ya existe una obra con este titulo.',
+            'titulo.regex' => 'El titulo no es compatible con caracteres especiales.',
             'descripcion.regex' => '- La descripcion no puede contener caracteres especiales.',
             'imagen.image' => 'El archivo debe ser una imagen.',
             'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
