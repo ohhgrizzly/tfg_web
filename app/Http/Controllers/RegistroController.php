@@ -46,7 +46,6 @@ class RegistroController extends Controller
             'imagenPerfil.max' => '- El tamaño máximo del archivo es de :max kilobytes.',
         ]);
 
-        try {
             $nombreUsuarioExistente = Usuario::where('nombre_usuario', $request->input('nombre_usuario'))->exists();
             $correoExistente = Usuario::where('correo', $request->input('correo'))->exists();
 
@@ -105,10 +104,6 @@ class RegistroController extends Controller
 
             Auth::login($usuario);
             return redirect()->route('index')->with('success', 'Usuario registrado exitosamente.');
-
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error al registrar el usuario. Por favor, inténtelo de nuevo.');
-        }
     }
 }
 ?>
