@@ -65,8 +65,8 @@ class ObraController extends Controller
         // Manejar la subida de la imagen
         if ($request->hasFile('imagen')) {
             $imagen = $request->file('imagen');
-            $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
-            $ruta = $imagenPerfil->storeAs('assets/img/imagenesObras', $nombre, 'public');
+            $nombre = time() . '_' . $imagen->getClientOriginalName();
+            $ruta = $imagen->storeAs('assets/img/imagenesObras', $nombre, 'public');
 
             // Redimensionar la imagen antes de guardarla
             $rutaImagen = storage_path('app/public/' . $ruta);
@@ -76,7 +76,7 @@ class ObraController extends Controller
             $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
             // Crear imagen según la extensión
-            $extension = $imagenPerfil->getClientOriginalExtension();
+            $extension = $imagen->getClientOriginalExtension();
             if ($extension === 'jpeg' || $extension === 'jpg') {
                 $imagenOriginal = imagecreatefromjpeg($rutaImagen);
             } elseif ($extension === 'png') {
