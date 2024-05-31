@@ -307,5 +307,20 @@ class ObrasSeeder extends Seeder
             'autor' => 'Marta Sánchez',
         ]);
 
+        // Iterar sobre cada obra y crearlo con sus respectivas imágenes
+        foreach ($obras as $obraData) {
+            $obra = new Obra($obraData);
+
+            // Copiamos la imagen de perfil predefinida al directorio de almacenamiento
+            $rutaImagenPredefinida = public_path('assets/img/imagenesObras/' . $obraData['imagen']); // Ruta completa de la imagen
+            $nombreImagen = time() . '_' . $obraData['imagen']; // Nombre único para la imagen
+            $rutaDestino = storage_path('app/public/assets/img/imagenesObras/' . $nombreImagen);
+            copy($rutaImagenPredefinida, $rutaDestino);
+
+            // Asignamos la imagen de perfil al usuario
+            obra->imagen = $nombreImagen;
+            obra->save();
+        }
+
     }
 }
