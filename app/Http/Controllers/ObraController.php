@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Obra;
 use App\Models\Categoria;
 use App\Models\Comentario;
@@ -187,7 +188,9 @@ public function actualizarObraPerfil(Request $request, $id)
             $obraActualizar->descripcion = $request->descripcion;
         }
         if ($request->hasFile('imagen')) {
-            dd('HAY OBRA');
+            if ($obraActualizar->imagen) {
+            Storage::delete('assets/img/imagenesObras/' . $obraActualizar->imagen);
+        }
             $imagen = $request->file('imagen');
             $nombre = time().'.'.$imagen->getClientOriginalExtension();
             $destino = public_path('/assets/img/imagenesObras');
