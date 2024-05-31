@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,26 +8,14 @@ use App\Models\Usuario;
 
 class RegistroController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   public function verFormulario(): View
+    public function verFormulario(): View
     {
         return view('registroForm');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function crearUsuario(Request $request)
     {
         dd($request->all());
-        // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
             'nombre' => 'required|regex:/^[a-zA-Z0-9]+$/',
@@ -61,46 +47,39 @@ class RegistroController extends Controller
         ]);
 
         try {
+            $nombreUsuarioExistente = Usuario::where('nombre_usuario', $request->input('nombre_usuario'))->exists();
+            $correoExistente = Usuario::where('correo', $request->input('correo'))->exists();
 
-            // Verificar si el nombre de usuario ya existe
-        $nombreUsuarioExistente = Usuario::where('nombre_usuario', $request->input('nombre_usuario'))->exists();
+            if ($nombreUsuarioExistente) {
+                dd('Nombre en uso');
+                return redirect()->back()->with('error', 'El nombre de usuario ya está en uso.');
+            }
 
-        // Verificar si el correo electrónico ya existe
-        $correoExistente = Usuario::where('correo', $request->input('correo'))->exists();
+            if ($correoExistente) {
+                dd('Correo en uso');
+                return redirect()->back()->with('error', 'El correo electrónico ya está en uso.');
+            }
 
-        if ($nombreUsuarioExistente) {
-            dd('Nombre en uso');
-            return redirect()->back()->with('error', 'El nombre de usuario ya está en uso.');
-        }
-
-        if ($correoExistente) {
-             dd('Correo en uso');
-            return redirect()->back()->with('error', 'El correo electrónico ya está en uso.');
-        }
-            // Crear un nuevo usuario con los datos del formulario
             $usuario = new Usuario();
             $usuario->nombre_usuario = $request->input('nombre_usuario');
             $usuario->nombre = $request->input('nombre');
             $usuario->apellidos = $request->input('apellidos');
-            $usuario->contrasena = $request->input('contrasena');
+            $usuario->contrasena = Hash::make($request->input('contrasena')); // Asegúrate de hashear la contraseña
             $usuario->correo = $request->input('correo');
             $usuario->telefono = $request->input('telefono');
 
-            // Manejar la subida de la imagen
             if ($request->hasFile('imagenPerfil')) {
                 $imagenPerfil = $request->file('imagenPerfil');
                 $nombre = time().'.'.$imagenPerfil->getClientOriginalExtension();
                 $destino = public_path('/assets/img/imagenesPerfil');
                 $imagenPerfil->move($destino, $nombre);
 
-                // Redimensionar la imagen antes de guardarla
                 $rutaImagen = public_path('/assets/img/imagenesPerfil/'.$nombre);
                 list($ancho, $alto) = getimagesize($rutaImagen);
-                $nuevoAncho = 600; // Ajusta el ancho deseado
-                $nuevoAlto = 600; // Ajusta el alto deseado
+                $nuevoAncho = 600;
+                $nuevoAlto = 600;
                 $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-                // Crear imagen según la extensión
                 $extension = $imagenPerfil->getClientOriginalExtension();
                 if ($extension === 'jpeg' || $extension === 'jpg') {
                     $imagenOriginal = imagecreatefromjpeg($rutaImagen);
@@ -108,11 +87,9 @@ class RegistroController extends Controller
                     $imagenOriginal = imagecreatefrompng($rutaImagen);
                 }
 
-                // Redimensionar la imagen
                 if ($imagenOriginal) {
                     imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-                    // Guardar la imagen redimensionada
                     if ($extension === 'jpeg' || $extension === 'jpg') {
                         imagejpeg($imagenRedimensionada, $rutaImagen, 100);
                     } elseif ($extension === 'png') {
@@ -122,16 +99,14 @@ class RegistroController extends Controller
                     $usuario->imagenPerfil = $nombre;
                 }
             }
-             
+
             $usuario->save();
             dd($usuario);
 
-            // Autenticar al usuario y redirigir
             Auth::login($usuario);
             return redirect()->route('index')->with('success', 'Usuario registrado exitosamente.');
 
         } catch (\Exception $e) {
-            // Manejar el error e imprimir el mensaje de error
             return redirect()->back()->with('error', 'Error al registrar el usuario. Por favor, inténtelo de nuevo.');
         }
     }
