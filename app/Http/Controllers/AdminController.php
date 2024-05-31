@@ -92,18 +92,13 @@ public function actualizarObra(Request $request, $id)
         $request->validate([
             'titulo' => 'nullable|unique:obras|string|regex:/^[a-zA-Z0-9\s]+$/',
             'descripcion' => 'nullable',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'nullable',
             'subcategoria' => 'nullable',
             'autor' => 'nullable',
             
         ], [
             'titulo.unique' => 'Ya existe una obra con este titulo.',
-            'titulo.regex' => 'El titulo no es compatible con caracteres especiales.',
-            'imagen.image' => 'El archivo debe ser una imagen.',
-            'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
-            'imagen.max' => 'La imagen no debe superar los 2048 kilobytes.',
-            
+            'titulo.regex' => 'El titulo no es compatible con caracteres especiales.',       
         ]);
         
         
@@ -118,42 +113,6 @@ public function actualizarObra(Request $request, $id)
         if ($request->filled('descripcion')) {
             $obraActualizar->descripcion = $request->descripcion;
         }
-        if ($request->hasFile('imagen')) {
-            $imagen = $request->file('imagen');
-            $nombre = time().'.'.$imagen->getClientOriginalExtension();
-            $destino = public_path('/assets/img/imagenesObras');
-            $imagen->move($destino, $nombre);
-        
-            // Redimensionar la imagen antes de guardarla
-            $rutaImagen = public_path('/assets/img/imagenesObras/'.$nombre);
-            list($ancho, $alto) = getimagesize($rutaImagen);
-            $nuevoAncho = 600; // Ajusta el ancho deseado
-            $nuevoAlto = 600; // Ajusta el alto deseado
-            $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-        
-            // Crear imagen según la extensión
-            $extension = $imagen->getClientOriginalExtension();
-            if ($extension === 'jpeg' || $extension === 'jpg') {
-                $imagenOriginal = imagecreatefromjpeg($rutaImagen);
-            } elseif ($extension === 'png') {
-                $imagenOriginal = imagecreatefrompng($rutaImagen);
-            }
-        
-            // Redimensionar la imagen
-            if ($imagenOriginal) {
-                imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-        
-                // Guardar la imagen redimensionada
-                if ($extension === 'jpeg' || $extension === 'jpg') {
-                    imagejpeg($imagenRedimensionada, $rutaImagen, 100);
-                } elseif ($extension === 'png') {
-                    imagepng($imagenRedimensionada, $rutaImagen, 9);
-                }
-        
-                // Asignar el nombre de la imagen a la obra creada
-                $obraActualizar->imagen = $nombre;
-            }
-        }
         if ($request->filled('subcategoria')) {
             $obraActualizar->subcategoria_id = $request->input('subcategoria');
         }
@@ -165,7 +124,7 @@ public function actualizarObra(Request $request, $id)
 
         // Autenticar al usuario y redirigir
         return redirect()->route('verObrasTotales')->with('success', 'Obra registrada exitosamente.');
-    }
+        }
     }
 
 
