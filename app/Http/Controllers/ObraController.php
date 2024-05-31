@@ -157,7 +157,7 @@ public function actualizarObraPerfil(Request $request, $id)
         // Validar los datos del formulario
         $request->validate([
             'titulo' => 'nullable|unique:obras|regex:/^[a-zA-Z0-9\s]+$/',
-            'descripcion' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
+            'descripcion' => 'nullable',
             'categoria' => 'nullable',
             'subcategoria' => 'nullable',
             'autor' => 'nullable|regex:/^[a-zA-Z0-9\s]+$/',
@@ -165,7 +165,6 @@ public function actualizarObraPerfil(Request $request, $id)
         ], [
             'titulo.unique' => 'Ya existe una obra con este titulo.',
             'titulo.regex' => 'El titulo no es compatible con caracteres especiales.',
-            'descripcion.regex' => '- La descripcion no puede contener caracteres especiales.',
             'autor.regex' => '- El autor no puede contener caracteres especiales.',
             
         ]);
