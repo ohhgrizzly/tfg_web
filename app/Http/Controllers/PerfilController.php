@@ -127,6 +127,8 @@ class PerfilController extends Controller
 
                 $usuario->imagenPerfil = $nombre;
             }
+        } else {
+            dd('No va');
         }
         $usuario->save();
 
