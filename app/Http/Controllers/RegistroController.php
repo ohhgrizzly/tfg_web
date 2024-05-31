@@ -19,8 +19,8 @@ class RegistroController extends Controller
             // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
-            'nombre' => 'required|regex:/^[a-zA-Z0-9\s]+$/',
-            'apellidos' => 'required|regex:/^[a-zA-Z0-9\s]+$/',
+            'nombre' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'apellidos' => 'required|regex:/^[a-zA-Z\s]+$/',
             'contrasena' => 'required|min:6',
             'correo' => 'required|email|unique:usuarios',
             'telefono' => 'nullable|numeric|unique:usuarios',
