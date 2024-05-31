@@ -92,8 +92,6 @@ class RegistroController extends Controller
 
                 $usuario->imagenPerfil = $nombre;
             }
-        } else {
-            $usuario->imagenPerfil = null;
         }
 
             $usuario->save();
