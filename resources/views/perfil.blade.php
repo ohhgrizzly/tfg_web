@@ -42,7 +42,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-badge"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre }}" value="{{ Auth::user()->nombre }}" name="nombre" aria-label="Name" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre }}" name="nombre" aria-label="Name" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -78,13 +78,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{ Auth::user()->correo }}" value="{{ Auth::user()->correo }}" name="correo" aria-label="Email" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="{{ Auth::user()->correo }}" name="correo" aria-label="Email" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{ Auth::user()->telefono }}" value="{{ Auth::user()->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="{{ Auth::user()->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
