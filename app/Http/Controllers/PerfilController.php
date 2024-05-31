@@ -49,7 +49,7 @@ class PerfilController extends Controller
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
             'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
-            'imagenPerfil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'imagenPerfil' => 'image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
             'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
