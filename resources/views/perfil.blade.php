@@ -13,7 +13,7 @@
                                 <!-- Mostrar imagen de perfil -->
                                 <img src="{{ secure_asset('storage/assets/img/imagenesPerfil/' . Auth::user()->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
                             </div>                    
-                            <form method="POST" action="{{ route('perfil_actualizar') }}">
+                            <form method="POST" action="{{ secure_route('perfil_actualizar') }}">
                                 @csrf <!-- token CSRF -->
                                 <div class="input-group mb-3">
                                 <div class="input-group-prepend">
