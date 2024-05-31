@@ -37,36 +37,23 @@ class PerfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function actualizarPerfil(Request $request, $id)
+   public function actualizarPerfil(Request $request)
 {
     // Verificar si el usuario está autenticado
     if (Auth::check()) {
-        
-        
         // Validar los datos del formulario
         $request->validate([
-            'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9\s]+$/',
-            'nombre' => 'nullable|regex:/^[a-zA-Z\s]+$/',
-            'apellidos' => 'nullable|regex:/^[a-zA-Z\s]+$/',
+            'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
+            'nombre' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
+            'apellidos' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
-            'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
+            'telefono' => 'nullable|numeric|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
-        ], [
-            'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
-            'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
-            'nombre_usuario.min' => '- El nombre de usuario debe tener al menos :min caracteres.',
-            'nombre.regex' => '- El nombre no puede contener caracteres especiales ni numeros.',
-            'apellidos.regex' => '- Los apellidos no puede contener caracteres especiales ni numeros.',
-            'contrasena.required' => '- La contraseña es obligatoria.',
-            'correo.email' => '- El correo electrónico no es válido.',
-            'correo.unique' => '- El correo electrónico ya está en uso.',
-            'telefono.unique' => '- El teléfono ya está en uso.',
-            'telefono.regex' => '- El teléfono no puede contener caracteres especiales, espacios en blanco o letras.', 
         ]);
 
-        // Obtener el usuario 
-        $usuario = Usuario::findOrFail($id);
-        dd($usuario);
+        // Obtener el usuario actualmente autenticado
+        $usuario = Auth::user();
+
         // Verificar si la contraseña proporcionada es correcta
         if (!Hash::check($request->contrasena, $usuario->contrasena)) {
             return back()->withErrors([
@@ -90,42 +77,6 @@ class PerfilController extends Controller
         if ($request->filled('telefono')) {
             $usuario->telefono = $request->telefono;
         }
-        // Manejar la subida de la imagen
-        if ($request->hasFile('imagenPerfil')) {
-            $imagenPerfil = $request->file('imagenPerfil');
-            $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
-            $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
-
-            // Redimensionar la imagen antes de guardarla
-            $rutaImagen = storage_path('app/public/' . $ruta);
-            list($ancho, $alto) = getimagesize($rutaImagen);
-            $nuevoAncho = 600; // Ajusta el ancho deseado
-            $nuevoAlto = 600; // Ajusta el alto deseado
-            $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-            // Crear imagen según la extensión
-            $extension = $imagenPerfil->getClientOriginalExtension();
-            if ($extension === 'jpeg' || $extension === 'jpg') {
-                $imagenOriginal = imagecreatefromjpeg($rutaImagen);
-            } elseif ($extension === 'png') {
-                $imagenOriginal = imagecreatefrompng($rutaImagen);
-            }
-
-            // Redimensionar la imagen
-            if ($imagenOriginal) {
-                imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-                // Guardar la imagen redimensionada
-                if ($extension === 'jpeg' || $extension === 'jpg') {
-                    imagejpeg($imagenRedimensionada, $rutaImagen, 100);
-                } elseif ($extension === 'png') {
-                    imagepng($imagenRedimensionada, $rutaImagen, 9);
-                }
-
-                $usuario->imagenPerfil = $nombre;
-            }
-        }
-        
         $usuario->save();
 
         // Actualizar los datos de la sesión
