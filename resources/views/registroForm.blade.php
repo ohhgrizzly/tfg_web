@@ -7,7 +7,7 @@
                 <div class="bg-layer d-flex col-md-4">
                     <div class="login-box row">
                         <h3>Registrarme</h3>
-                        <form method="POST" action="{{ secure_url(route('crearUsuario')) }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('registroProcesado') }}" enctype="multipart/form-data">
                             @csrf <!-- token CSRF -->
 
                             <div class="input-group mb-3">
