@@ -27,42 +27,42 @@ class RegistroController extends Controller
             $usuario->telefono = $request->input('telefono');
 
             // Manejar la subida de la imagen
-            if ($request->hasFile('imagenPerfil')) {
-                $imagenPerfil = $request->file('imagenPerfil');
-                $nombre = time().'.'.$imagenPerfil->getClientOriginalExtension();
-                $destino = public_path('/assets/img/imagenesPerfil');
-                dd($destino . $nombre);
-                $imagenPerfil->move($destino, $nombre);
+        if ($request->hasFile('imagenPerfil')) {
+            $imagenPerfil = $request->file('imagenPerfil');
+            $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
+            $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
 
-                // Redimensionar la imagen antes de guardarla
-                $rutaImagen = public_path('/assets/img/imagenesPerfil/'.$nombre);
-                list($ancho, $alto) = getimagesize($rutaImagen);
-                $nuevoAncho = 600; // Ajusta el ancho deseado
-                $nuevoAlto = 600; // Ajusta el alto deseado
-                $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+            // Redimensionar la imagen antes de guardarla
+            $rutaImagen = storage_path('app/public/' . $ruta);
+            list($ancho, $alto) = getimagesize($rutaImagen);
+            $nuevoAncho = 600; // Ajusta el ancho deseado
+            $nuevoAlto = 600; // Ajusta el alto deseado
+            $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-                // Crear imagen según la extensión
-                $extension = $imagenPerfil->getClientOriginalExtension();
-                if ($extension === 'jpeg' || $extension === 'jpg') {
-                    $imagenOriginal = imagecreatefromjpeg($rutaImagen);
-                } elseif ($extension === 'png') {
-                    $imagenOriginal = imagecreatefrompng($rutaImagen);
-                }
-
-                // Redimensionar la imagen
-                if ($imagenOriginal) {
-                    imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-                    // Guardar la imagen redimensionada
-                    if ($extension === 'jpeg' || $extension === 'jpg') {
-                        imagejpeg($imagenRedimensionada, $rutaImagen, 100);
-                    } elseif ($extension === 'png') {
-                        imagepng($imagenRedimensionada, $rutaImagen, 9);
-                    }
-
-                    $usuario->imagenPerfil = $nombre;
-                }
+            // Crear imagen según la extensión
+            $extension = $imagenPerfil->getClientOriginalExtension();
+            if ($extension === 'jpeg' || $extension === 'jpg') {
+                $imagenOriginal = imagecreatefromjpeg($rutaImagen);
+            } elseif ($extension === 'png') {
+                $imagenOriginal = imagecreatefrompng($rutaImagen);
             }
+
+            // Redimensionar la imagen
+            if ($imagenOriginal) {
+                imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+                // Guardar la imagen redimensionada
+                if ($extension === 'jpeg' || $extension === 'jpg') {
+                    imagejpeg($imagenRedimensionada, $rutaImagen, 100);
+                } elseif ($extension === 'png') {
+                    imagepng($imagenRedimensionada, $rutaImagen, 9);
+                }
+
+                $usuario->imagenPerfil = $nombre;
+            }
+        } else {
+            $usuario->imagenPerfil = null;
+        }
 
             $usuario->save();
             dd($usuario);
