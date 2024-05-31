@@ -32,12 +32,6 @@
                             </div>
                             <textarea class="form-control" placeholder="{{ $obra->descripcion }}" name="descripcion" aria-label="Descripcion" aria-describedby="basic-addon1">{{ $obra->descripcion }}</textarea>
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon2"><i class="bi bi-image"></i></span>
-                            </div>
-                            <input type="file" class="form-control" placeholder="Imagen" name="imagen" aria-label="Imagen" aria-describedby="basic-addon2">
-                        </div>
                         
                         <!-- Desplegables para las Categorías y Subcategorías -->
                         <div class="form-group">
