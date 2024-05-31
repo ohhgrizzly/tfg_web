@@ -96,6 +96,8 @@ class ObraController extends Controller
 
                 $obraCreada->imagen = $nombre;
             }
+        } else {
+            $obraCreada->imagen = null;
         }
 
 
