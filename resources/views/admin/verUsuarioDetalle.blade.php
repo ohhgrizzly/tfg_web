@@ -92,8 +92,7 @@
                                             <img src="{{ secure_asset('storage/assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
                                             <div class="portfolio-info text-white border border-dark p-3">
                                                 <h4>{{ $obra->titulo }}</h4>
-                                                <span>{{ $obra->descripcion }}</span>
-                                                <span>{{ $obra->subcategoria->tipo }}</span>
+                                                <p>Autor: {{ $obra->autor }}</p>
                                             </div>
                                         </div>
                                     </div>
