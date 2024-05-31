@@ -43,12 +43,23 @@ class PerfilController extends Controller
     if (Auth::check()) {
         // Validar los datos del formulario
         $request->validate([
-            'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
-            'nombre' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
-            'apellidos' => 'nullable|regex:/^[a-zA-Z0-9]+$/',
+            'nombre_usuario' => 'nullable|unique:usuarios|min:3',
+            'nombre' => 'nullable|regex:/^[a-zA-Z\s]+$/',
+            'apellidos' => 'nullable|regex:/^[a-zA-Z\s]+$/',
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
-            'telefono' => 'nullable|numeric|unique:usuarios,telefono,' . Auth::id(),
+            'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
+        ],[
+            'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
+            'nombre_usuario.min' => '- El nombre de usuario debe tener al menos :min caracteres.',
+            'apellidos.regex' => '- Los apellidos no pueden contener caracteres especiales o numeros.',
+            'contrasena.required' => '- La contraseña es obligatoria.',
+            'contrasena.min' => '- La contraseña debe tener al menos :min caracteres.',
+            'correo.email' => '- El correo electrónico no es válido.',
+            'correo.unique' => '- El correo electrónico ya está en uso.',
+            'telefono.numeric' => '- El teléfono debe ser un valor numérico.',
+            'telefono.unique' => '- El teléfono ya está en uso.',
+            'telefono.regex' => '- El teléfono no puede contener caracteres especiales o letras.',
         ]);
 
         // Obtener el usuario actualmente autenticado
