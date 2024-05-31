@@ -11,7 +11,7 @@
                             <h3>Mi Perfil</h3>
                             <div class="text-center mb-4">
                                 <!-- Mostrar imagen de perfil -->
-                                <img src="{{ secure_asset('assets/img/imagenesPerfil/' . Auth::user()->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
+                                <img src="{{ secure_asset('storage/assets/img/imagenesPerfil/' . Auth::user()->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
                             </div>                    
                             <form method="POST" action="{{ route('perfil_actualizar') }}">
                                 @csrf <!-- token CSRF -->
