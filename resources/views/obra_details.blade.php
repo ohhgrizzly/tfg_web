@@ -23,7 +23,7 @@
 
           <div class="col-lg-8">
             <div class="portfolio-details-slider">
-              <img src="{{ secure_asset('assets/img/imagenesObras/' . $obra->imagen) }}" alt="Imagen de la obra" class="img-fluid mx-auto d-block">
+              <img src="{{ secure_asset('storage/assets/img/imagenesObras/' . $obra->imagen) }}" alt="Imagen de la obra" class="img-fluid mx-auto d-block">
             </div>
           </div>
 
