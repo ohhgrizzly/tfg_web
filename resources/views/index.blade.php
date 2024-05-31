@@ -74,7 +74,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in">
                     <div class="member-img">
-                      <img src="{{ secure_asset('storage/assets/img/team/escultura.png') }}" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/escultura.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Compartir Obras</h3>
@@ -87,7 +87,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="100">
                     <div class="member-img">
-                      <img src="{{ secure_asset('storage/assets/img/team/vangogh.png') }}" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/vangogh.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Descubrir Arte</h3>
@@ -100,7 +100,7 @@
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                   <div class="member" data-aos="zoom-in" data-aos-delay="200">
                     <div class="member-img">
-                      <img src="{{ secure_asset('storage/assets/img/team/comunidad.png') }}" class="img-fluid" alt="">
+                      <img src="{{ secure_asset('assets/img/team/comunidad.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="member-info">
                       <h3>Interactuar</h3>
