@@ -8,6 +8,23 @@
                     <div class="bg-layer d-flex col-md-4 mt-4">
                         <div class="login-box row">
                             <h3>Perfil de {{ $usuario->nombre }}</h3>
+                            <!-- Card de errores -->
+                <div class="col-mt-4">
+                    @if ($errors->any())
+                    <div class="card border-danger mb-3">
+                        <div class="card-header bg-danger text-white">
+                            Errores de validación
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
+                </div>
                             <div class="text-center mb-4">
                                 <!-- Mostrar imagen de perfil -->
                                 <img src="{{ secure_asset('storage/assets/img/imagenesPerfil/' . $usuario->imagenPerfil) }}" class="img-fluid rounded-circle w-25" alt="Imagen de perfil">
