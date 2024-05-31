@@ -42,50 +42,7 @@ class ObrasSeeder extends Seeder
             'autor' => 'Ruben de Luis',
         ],
 
-       [
-            'titulo' => 'Florecer del Cerezo',
-            'descripcion' => 'En esta cautivadora obra de arte, titulada "Florecer del Cerezo", el artista nos transporta a un mundo de delicadeza y esplendor primaveral. Con maestría y sensibilidad, la pintura captura la efímera belleza de los cerezos en flor en todo su esplendor. En el lienzo, los suaves tonos rosados y blancos se entrelazan en una danza etérea de pinceladas, creando un paisaje etéreo que parece cobrar vida ante nuestros ojos. Cada flor, meticulosamente representada, irradia una luminosidad casi celestial, mientras que las ramas desnudas se alargan hacia el cielo en un ballet de elegancia natural. La luz del sol filtra a través de las delicadas flores, creando un juego de luces y sombras que añade profundidad y misterio a la escena. El ambiente está impregnado de una sensación de serenidad y renovación, como si el propio aire estuviera impregnado del dulce aroma de las flores en floración. Al contemplar esta obra, nos sumergimos en un mundo de calma y contemplación, donde el tiempo parece detenerse y solo queda espacio para la admiración ante la maravilla de la naturaleza. Es un recordatorio conmovedor de la fugacidad de la vida y la belleza efímera que nos rodea, capturada para siempre en el lienzo por el talento del artista',
-            'imagen' => 'imagen_obra5.jpg',
-            'id_usuario' => '3',
-            'subcategoria_id' => '1',
-            'autor' => 'Isodoro',
-        ],
-
-        [
-            'titulo' => 'Horizontes Infinitos',
-            'descripcion' => 'En este magnífico lienzo, titulado "Horizontes Infinitos", el espectador es transportado a vastas y ondulantes llanuras que se extienden hasta donde alcanza la vista. Con pinceladas magistrales de óleo, el artista ha capturado la inmensidad y la majestuosidad de estos paisajes abiertos. Los tonos cálidos y terrosos dominan la paleta de colores, reflejando la riqueza de la tierra y el sol que acaricia suavemente la superficie de las llanuras. El cielo se funde armoniosamente con la tierra en un degradado de azules y naranjas, creando un efecto de infinitud que invita a perderse en el horizonte lejano. En primer plano, podemos vislumbrar la silueta de árboles solitarios y arbustos dispersos, que rompen la monotonía de la llanura con su presencia esparcida. El viento parece susurrar entre las hojas y las hierbas altas se mecen suavemente, añadiendo movimiento y vida a la escena estática. La luz del atardecer baña todo con una suave luminiscencia dorada, creando contrastes y sombras que dan profundidad y textura a la composición. Cada detalle está representado con una precisión impresionante, desde la hierba que se mece en el viento hasta las nubes que flotan perezosamente en el cielo. Al contemplar esta obra, nos sumergimos en un estado de contemplación y tranquilidad, donde el tiempo se diluye y solo queda espacio para la admiración ante la belleza atemporal de la naturaleza. Es un recordatorio de la grandeza del mundo que nos rodea y de la capacidad del arte para capturar la esencia misma de la existencia humana.',
-            'imagen' => 'imagen_obra6.jpg',
-            'id_usuario' => '3',
-            'subcategoria_id' => '1',
-            'autor' => 'Ruben de Luis',
-        ],
-
-        [
-            'titulo' => 'Marina del sol',
-            'descripcion' => 'En esta cautivadora pintura al óleo titulada "Marina del Sol", el espectador es transportado a un encantador puerto pesquero en la costa mediterránea de España. Con pinceladas vibrantes y ricas en color, el artista ha capturado la vida y el carácter único de este pintoresco lugar. El puerto, bautizado como "Puerto Dorado", se encuentra bañado por la cálida luz del sol de la tarde, que ilumina los edificios blancos y las embarcaciones pintorescas que descansan en las tranquilas aguas. Los tonos dorados y ocres dominan la escena, creando un ambiente acogedor y nostálgico que invita a la contemplación. Los barcos pesqueros, con sus cascos de madera desgastada y velas ondeando al viento, añaden un toque de autenticidad y vida al puerto. Algunos pescadores trabajan en reparaciones, mientras que otros descansan en las tabernas cercanas, disfrutando de la camaradería y el bullicio característicos del lugar. Las casas encaladas y los edificios tradicionales se apiñan alrededor del puerto, creando un laberinto de callejuelas estrechas y sinuosas. Las terrazas de los restaurantes y cafeterías están llenas de gente que disfruta de deliciosos manjares y vistas impresionantes del mar y el puerto. En el horizonte, el sol se pone lentamente sobre el mar, tiñendo el cielo de tonos rosados y dorados que se reflejan en las tranquilas aguas. Es un momento mágico y efímero, capturado para siempre en esta magnífica obra de arte que celebra la belleza y la serenidad del Mediterráneo español.',
-            'imagen' => 'imagen_obra7.jpg',
-            'id_usuario' => '3',
-            'subcategoria_id' => '1',
-            'autor' => 'Juan Javier Mendez',
-        ],
-
-        [
-            'titulo' => 'Reflejos Urbanos',
-            'descripcion' => 'En esta enigmática pintura al óleo titulada "Reflejos Urbanos", el espectador es transportado a las orillas de "Villamar", una ciudad ficticia creada por el ilustre artista Lucas Montalbán. Con maestría, Montalbán ha capturado la esencia dinámica y vibrante de esta metrópolis imaginaria en una obra que rebosa de energía y movimiento. La ribera de Villamar, bañada por las aguas cristalinas de un río serpenteante, se encuentra enmarcada por una línea de imponentes rascacielos que se alzan hacia el cielo. Las torres de vidrio y acero se reflejan en el agua, creando un efecto de espejo que duplica la majestuosidad de la ciudad. En las orillas del río, bulliciosas avenidas y bulevares cobran vida con la actividad frenética de la vida urbana. Transeúntes pasean por las aceras, mientras que bicicletas y coches zigzaguean entre el tráfico, creando un vaivén constante de movimiento y color. Las luces de neón parpadean en los letreros de los comercios y restaurantes, iluminando la noche con destellos de magia y misterio. La música flota en el aire, mezclándose con el murmullo de la gente y el suave chapoteo del agua contra los muelles. En el horizonte, los últimos rayos del sol poniente tiñen el cielo de tonos dorados y rosados, creando una atmósfera de ensueño que envuelve la ciudad en un halo de belleza y nostalgia. Es un momento fugaz, capturado por Montalbán en esta obra maestra que celebra la grandeza y la vitalidad de la vida urbana en "Villamar".',
-            'imagen' => 'imagen_obra8.jpg',
-            'id_usuario' => '3',
-            'subcategoria_id' => '1',
-            'autor' => 'Lucas Montalbán',
-        ],
-        [
-            'titulo' => 'Riberas de Azur',
-            'descripcion' => 'En esta magnífica obra de arte titulada "Riberas de Azur", el renombrado artista Catalina Sánchez nos transporta a las orillas de "Marbella del Mar", una ciudad ficticia creada por su imaginación prodigiosa. Con pinceladas magistrales de óleo, Sánchez ha plasmado la esencia encantadora y sofisticada de esta ciudad costera en un lienzo que rebosa de vitalidad y encanto. A lo largo de la ribera de Marbella del Mar, la brisa marina acaricia suavemente la costa dorada, mientras las olas rompen con delicadeza en la playa de arena blanca. Las palmeras se mecen al compás del viento, ofreciendo sombra y frescor a los transeúntes que pasean por el malecón. Los edificios de estilo mediterráneo se alzan con elegancia a lo largo del paseo marítimo, con fachadas pintadas de blanco resplandeciente que reflejan la luz del sol. Las terrazas de los cafés y restaurantes están llenas de vida, con clientes disfrutando de la brisa marina y las vistas panorámicas del mar. En el puerto deportivo, yates y veleros se mecen suavemente en las aguas tranquilas, creando una estampa idílica de lujo y opulencia. El reflejo del sol sobre el agua crea destellos dorados que bailan en la superficie, añadiendo un toque de magia a la escena. A medida que cae la tarde, el cielo se tiñe de tonos cálidos y dorados, iluminando la ciudad con una luz mágica y evocadora. Es un momento de calma y serenidad, capturado por Catalina Sánchez en esta obra de arte que invita al espectador a sumergirse en la belleza atemporal de "Marbella del Mar".',
-            'imagen' => 'imagen_obra9.jpg',
-            'id_usuario' => '4',
-            'subcategoria_id' => '1',
-            'autor' => 'Catalina Sánchez',
-        ],
-
+      
         [
             'titulo' => 'Valle de Ensueño',
             'descripcion' => 'En esta impresionante pintura titulada "Valle de Ensueño", el virtuoso artista Javier Montoya nos invita a adentrarnos en un paisaje de ensueño, donde la naturaleza despliega toda su majestuosidad y belleza. Con trazos magistrales de óleo, Montoya ha creado una obra maestra que transporta al espectador a un mundo de serenidad y asombro. El valle se extiende ante nuestros ojos en una sinfonía de colores y texturas, con suaves colinas cubiertas de exuberante vegetación y bosques frondosos que se pierden en el horizonte. Los tonos verdes y dorados se funden armoniosamente, creando una paleta de colores que dan vida a la escena con una luminosidad cautivadora. En el centro del valle, un río serpentea sinuosamente entre los campos y prados, reflejando el cielo azul y las nubes blancas que flotan perezosamente en el firmamento. El agua cristalina brilla con una luz iridiscente, invitando a sumergirse en su frescura y serenidad. A lo lejos, las montañas se yerguen imponentes, con picos cubiertos de nieve que se recortan contra el cielo claro. La bruma matutina se eleva suavemente desde el suelo, envolviendo el paisaje en un velo etéreo que añade un toque de misterio y magia. En primer plano, flores silvestres salpican el paisaje con pinceladas de color, creando un contraste vibrante con el verde exuberante de la vegetación circundante. Mariposas revolotean entre las flores, llenando el aire con su delicada belleza y efímera gracia. Es un paisaje de una belleza indescriptible, capturado con maestría por Javier Montoya en esta obra de arte que invita al espectador a perderse en la tranquilidad y la armonía de este valle de ensueño.',
@@ -142,31 +99,12 @@ class ObrasSeeder extends Seeder
 
 
         [
-            'titulo' => 'Canción del Mar',
-            'descripcion' => 'En la enigmática obra titulada "Canción del Mar", el imaginario artista Victoria Marín nos transporta a las profundidades del océano, donde el mar embravecido canta su eterna melodía. En este impresionante lienzo, las olas se alzan majestuosas, como gigantes de espuma y agua que bailan al ritmo de los vientos salvajes. Las olas, con sus crestas blancas y espumosas, rompen con fuerza contra las rocas erosionadas, enviando ráfagas de sal y bruma al aire. El sonido del mar es ensordecedor, un rugido poderoso que llena el espacio y despierta los sentidos con su energía primordial. El cielo está cubierto por nubes oscuras y amenazadoras, que presagian una tormenta inminente. Los rayos de sol se filtran entre las nubes, creando destellos dorados en el agua turbulenta y pintando el paisaje con una luz mágica y efímera. En la distancia, se vislumbran siluetas borrosas de barcos pesqueros luchando contra las olas, su estructura resistiendo el embate del mar con valentía y determinación. El horizonte se pierde en la neblina, una línea difusa entre el cielo y el mar, donde el mundo conocido se encuentra con lo desconocido y lo misterioso. En "Canción del Mar", Victoria Marín captura la fuerza y la belleza del océano en todo su esplendor, invitándonos a contemplar la majestuosidad de la naturaleza y a reflexionar sobre la fragilidad y la fortaleza de la vida. Es una obra que nos recuerda la inmensidad y la grandeza del mar, así como nuestra conexión intrínseca con él, como seres que emergen de las profundidades primordiales del océano.',
-            'imagen' => 'imagen_obra16.png',
-            'id_usuario' => '6',
-            'subcategoria_id' => '1',
-            'autor' => 'Victoria Marín',
-        ],
-
-        [
             'titulo' => 'Sinfonía de Lilas',
             'descripcion' => 'En la obra titulada "Sinfonía de Lilas", el talentoso artista Sebastián Montoya nos sumerge en un jardín encantado donde las flores lilas bailan al ritmo de la brisa primaveral. En este magnífico lienzo, los tonos suaves y etéreos de las flores se mezclan armoniosamente, creando una sinfonía de color y belleza. Las lilas, con sus delicadas y fragantes flores, se alzan orgullosas hacia el cielo, sus pétalos ondulantes como faldas de bailarinas en un escenario celestial. Cada flor parece vibrar con vida propia, emanando una energía tranquila y serena que impregna el aire a su alrededor. El jardín está impregnado de un suave resplandor dorado, que se filtra entre las hojas y las flores, iluminando cada rincón con una luz cálida y acogedora. Los rayos de sol acarician suavemente los pétalos, resaltando su textura y revelando una paleta de colores que va desde el púrpura intenso hasta el blanco perlado. El aroma embriagador de las lilas llena el aire, mezclándose con el susurro de las hojas y el canto de los pájaros que revolotean entre las ramas. Es un momento de paz y armonía, donde el tiempo se detiene y el alma encuentra consuelo en la belleza efímera de la naturaleza. En "Sinfonía de Lilas", Sebastián Montoya captura la esencia misma de la primavera, celebrando la belleza y la fragilidad de la vida en todas sus formas. Es una obra que nos invita a detenernos y apreciar la magia que nos rodea, recordándonos la importancia de encontrar la belleza en los pequeños detalles y de cultivar un espíritu de gratitud y asombro ante el mundo que nos rodea.',
             'imagen' => 'imagen_obra17.png',
             'id_usuario' => '6',
             'subcategoria_id' => '1',
             'autor' => 'Sebastián Montoya',
-        ],
-
-        // ABSTRACTO
-        [
-            'titulo' => 'Olas Marinas',
-            'descripcion' => 'En esta fascinante obra de arte abstracto, titulada "Olas Marinas", el artista desafía las convenciones tradicionales para transportarnos a un mundo de sensaciones y emociones. A través de una explosión de colores y formas, la pintura evoca la energía indomable y la belleza tumultuosa del océano. Las pinceladas enérgicas y fluidas dan vida a las olas que danzan en el lienzo, capturando la esencia misma del movimiento perpetuo del mar. Los tonos azules profundos se entrelazan con pinceladas de blanco espumoso, creando un contraste dinámico que evoca la inmensidad y la fuerza del océano. En medio de esta sinfonía de colores y formas, el espectador se sumerge en un viaje visual donde cada trazo parece narrar una historia única. La abstracción permite interpretaciones infinitas, invitando a cada observador a explorar sus propias emociones y experiencias frente al lienzo. Desde la calma serena de las aguas tranquilas hasta la furia desatada de una tormenta en alta mar, "Olas Marinas" nos invita a contemplar la vastedad y la majestuosidad del océano en toda su gloria. Es una celebración de la belleza caótica y la inagotable inspiración que el mar proporciona a aquellos que se atreven a contemplarlo.',
-            'imagen' => 'imagen_obra4.jpg',
-            'id_usuario' => '2',
-            'subcategoria_id' => '3',
-            'autor' => 'Desconocido',
         ],
 
         [
