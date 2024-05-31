@@ -19,7 +19,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ $usuario->nombre_usuario }}" value="{{ $usuario->nombre_usuario }}" name="nombre_usuario" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="{{ $usuario->nombre_usuario }}" name="nombre_usuario" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -37,13 +37,13 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-at"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ $usuario->correo }}" value="{{ $usuario->correo }}" name="correo" aria-label="Email" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="{{ $usuario->correo }}" name="correo" aria-label="Email" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ $usuario->telefono }}" value="{{ $usuario->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="{{ $usuario->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
