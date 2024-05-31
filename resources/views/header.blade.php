@@ -26,10 +26,10 @@
                         <li><a class="nav-link scrollto" href="{{ route('registro') }}">Registrate</a></li>
                         <li><a class="nav-link scrollto" href="{{ route('login') }}">Iniciar Sesi&oacute;n</a></li>
                     @else
-                        <li class="dropdown"><a href="{{ route('perfil_vista') }}"><span>Perfil</span>@if(Auth::check() && Auth::user()->esAdmin == 1) <i class="bi bi-chevron-down"></i>@endif</a>
+                        <li class="dropdown"><a href="{{ route('perfil_actualizar', ['id' => Auth::id()]) }}"><span>Perfil</span>@if(Auth::check() && Auth::user()->esAdmin == 1) <i class="bi bi-chevron-down"></i>@endif</a>
                             <ul>
                                 @if(Auth::check() && Auth::user()->esAdmin == 1)
-                                    <li><a href="{{ route('perfil_vista') }}"><span>Mi Perfil</span></a></li>
+                                    <li><a href="{{ route('perfil_actualizar', ['id' => Auth::id()]) }}"><span>Mi Perfil</span></a></li>
                                     <li class="dropdown"><a href="#"><span>Gestionar</span> <i class="bi bi-chevron-right"></i></a>
                                         <ul>
                                             <li><a href="{{ route('verUsuarios') }}">Usuarios</a></li>
