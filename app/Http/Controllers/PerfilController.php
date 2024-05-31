@@ -66,6 +66,7 @@ class PerfilController extends Controller
 
         // Obtener el usuario 
         $usuario = Usuario::findOrFail($id);
+        dd($usuario);
         // Verificar si la contraseña proporcionada es correcta
         if (!Hash::check($request->contrasena, $usuario->contrasena)) {
             return back()->withErrors([
