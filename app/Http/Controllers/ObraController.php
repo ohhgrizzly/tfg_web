@@ -62,44 +62,41 @@ class ObraController extends Controller
         $obraCreada->autor = $request->input('autor');
         $obraCreada->id_usuario = $session_id;
 
-        
         // Manejar la subida de la imagen
-if ($request->hasFile('imagen')) {
-    $imagen = $request->file('imagen');
-    $nombre = time().'.'.$imagen->getClientOriginalExtension();
-    $destino = public_path('/assets/img/imagenesObras');
-    $imagen->move($destino, $nombre);
+        if ($request->hasFile('imagen')) {
+            $imagen = $request->file('imagen');
+            $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
+            $ruta = $imagenPerfil->storeAs('assets/img/imagenesObras', $nombre, 'public');
 
-    // Redimensionar la imagen antes de guardarla
-    $rutaImagen = public_path('/assets/img/imagenesObras/'.$nombre);
-    list($ancho, $alto) = getimagesize($rutaImagen);
-    $nuevoAncho = 600; // Ajusta el ancho deseado
-    $nuevoAlto = 600; // Ajusta el alto deseado
-    $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+            // Redimensionar la imagen antes de guardarla
+            $rutaImagen = storage_path('app/public/' . $ruta);
+            list($ancho, $alto) = getimagesize($rutaImagen);
+            $nuevoAncho = 600; // Ajusta el ancho deseado
+            $nuevoAlto = 600; // Ajusta el alto deseado
+            $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-    // Crear imagen según la extensión
-    $extension = $imagen->getClientOriginalExtension();
-    if ($extension === 'jpeg' || $extension === 'jpg') {
-        $imagenOriginal = imagecreatefromjpeg($rutaImagen);
-    } elseif ($extension === 'png') {
-        $imagenOriginal = imagecreatefrompng($rutaImagen);
-    }
+            // Crear imagen según la extensión
+            $extension = $imagenPerfil->getClientOriginalExtension();
+            if ($extension === 'jpeg' || $extension === 'jpg') {
+                $imagenOriginal = imagecreatefromjpeg($rutaImagen);
+            } elseif ($extension === 'png') {
+                $imagenOriginal = imagecreatefrompng($rutaImagen);
+            }
 
-    // Redimensionar la imagen
-    if ($imagenOriginal) {
-        imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+            // Redimensionar la imagen
+            if ($imagenOriginal) {
+                imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-        // Guardar la imagen redimensionada
-        if ($extension === 'jpeg' || $extension === 'jpg') {
-            imagejpeg($imagenRedimensionada, $rutaImagen, 100);
-        } elseif ($extension === 'png') {
-            imagepng($imagenRedimensionada, $rutaImagen, 9);
+                // Guardar la imagen redimensionada
+                if ($extension === 'jpeg' || $extension === 'jpg') {
+                    imagejpeg($imagenRedimensionada, $rutaImagen, 100);
+                } elseif ($extension === 'png') {
+                    imagepng($imagenRedimensionada, $rutaImagen, 9);
+                }
+
+                $obraCreada->imagen = $nombre;
+            }
         }
-
-        // Asignar el nombre de la imagen a la obra creada
-        $obraCreada->imagen = $nombre;
-    }
-}
 
 
         $obraCreada->save();
