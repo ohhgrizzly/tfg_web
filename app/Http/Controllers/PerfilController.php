@@ -49,7 +49,6 @@ class PerfilController extends Controller
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
             'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
-            'imagenPerfil' => 'image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
             'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
@@ -61,9 +60,6 @@ class PerfilController extends Controller
             'correo.unique' => '- El correo electrónico ya está en uso.',
             'telefono.unique' => '- El teléfono ya está en uso.',
             'telefono.regex' => '- El teléfono no puede contener caracteres especiales, espacios en blanco o letras.', 
-            'imagenPerfil.image' => '- El archivo debe ser una imagen.',
-            'imagenPerfil.mimes' => '- El archivo debe ser de tipo: jpeg, png, jpg, gif.',
-            'imagenPerfil.max' => '- El tamaño máximo del archivo es de :max kilobytes.',
         ]);
 
         // Obtener el usuario actualmente autenticado
