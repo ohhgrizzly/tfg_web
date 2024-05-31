@@ -72,7 +72,7 @@
                 </div>
             </div>  
             <div class="col-md-4 mt-4">
-                <img src="{{ secure_asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid rounded" alt="">
+                <img src="{{ secure_asset('storage/assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid rounded" alt="">
             </div>  
         </div>
     </div>
