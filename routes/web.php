@@ -66,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('perfil_vista');
 
     Route::get('/perfil', [ObraController::class, 'obrasPerfil'])->name('perfil_vista');
-    Route::post('/perfil/actualizar', [PerfilController::class, 'actualizarPerfil'])->name('perfil_actualizar');
+    Route::post('/perfil/actualizar/{id}', [PerfilController::class, 'actualizarPerfil'])->name('perfil_actualizar')->where('id', Auth::id());
     Route::post('/perfil/eliminar', [PerfilController::class, 'eliminarPerfil'])->name('perfil_eliminar');
 
     Route::get('/usuarioParticular/{id}', [PerfilController::class, 'mostrarUsuarioParticular'])->name('mostrarUsuarioParticular');
