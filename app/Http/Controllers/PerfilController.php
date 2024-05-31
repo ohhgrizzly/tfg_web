@@ -92,9 +92,9 @@ class PerfilController extends Controller
         if ($request->filled('telefono')) {
             $usuario->telefono = $request->telefono;
         }
-         // Manejar la subida de la imagen
-        if ($request->file('imagenPerfil')) {
-            dd($request->hasFile('imagenPerfil'));
+
+        // Manejar la subida de la imagen de perfil
+        if ($request->hasFile('imagenPerfil')) {
             $imagenPerfil = $request->file('imagenPerfil');
             $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
             $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
@@ -127,9 +127,8 @@ class PerfilController extends Controller
 
                 $usuario->imagenPerfil = $nombre;
             }
-        } else {
-            dd('No va');
         }
+        
         $usuario->save();
 
         // Actualizar los datos de la sesión
