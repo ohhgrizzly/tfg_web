@@ -187,6 +187,7 @@ public function actualizarObraPerfil(Request $request, $id)
             $obraActualizar->descripcion = $request->descripcion;
         }
         if ($request->hasFile('imagen')) {
+            dd('HAY OBRA');
             $imagen = $request->file('imagen');
             $nombre = time().'.'.$imagen->getClientOriginalExtension();
             $destino = public_path('/assets/img/imagenesObras');
