@@ -25,7 +25,7 @@ class UsuariosSeeder extends Seeder
             'contrasena' => '123456789',
             'telefono' => '664364675',
             'esAdmin' => false,
-            'imagenPerfil' => 'imagen_prueba1.jpg',
+            'imagenPerfil' => 'assets/img/imagenesPerfil/imagen_prueba1.jpg',
         ]);
         Usuario::create([
             'nombre_usuario' => 'marcosUser',
