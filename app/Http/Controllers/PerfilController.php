@@ -93,7 +93,7 @@ class PerfilController extends Controller
             $usuario->telefono = $request->telefono;
         }
          // Manejar la subida de la imagen
-        if ($request->hasFile('imagenPerfil')) {
+        if ($request->file('imagenPerfil')) {
             dd($request->hasFile('imagenPerfil'));
             $imagenPerfil = $request->file('imagenPerfil');
             $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
