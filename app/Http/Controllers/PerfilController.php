@@ -96,6 +96,7 @@ class PerfilController extends Controller
         // Manejar la subida de la imagen de perfil
         if ($request->hasFile('imagenPerfil')) {
             $imagenPerfil = $request->file('imagenPerfil');
+            dd($imagenPerfil);
             $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
             $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
 
