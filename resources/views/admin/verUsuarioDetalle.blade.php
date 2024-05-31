@@ -62,12 +62,6 @@
                                     </div>
                                     <input type="text" class="form-control" placeholder="{{ $usuario->telefono }}" name="telefono" aria-label="Phone" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
-                                    </div>
-                                    <input type="password" class="form-control" placeholder="Nueva contraseña" name="contrasena" aria-label="Password" aria-describedby="basic-addon1">
-                                </div>
                                 <button type="submit" class="btn btn-success">Actualizar</button>
                             </form>
                             <form method="POST" action="{{ route('hacerAdmin', $usuario->id) }}">
