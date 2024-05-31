@@ -21,7 +21,7 @@ class RegistroController extends Controller
             'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
             'nombre' => 'required|regex:/^[a-zA-Z\s]+$/',
             'apellidos' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'contrasena' => 'required|min:6',
+            'contrasena' => 'required|min:6|confirmed',
             'correo' => 'required|email|unique:usuarios',
             'telefono' => 'nullable|numeric|unique:usuarios',
             'imagenPerfil' => 'required|image|mimes:jpeg,png,jpg|max:2048',
