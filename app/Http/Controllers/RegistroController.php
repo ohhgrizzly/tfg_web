@@ -26,12 +26,12 @@ class RegistroController extends Controller
             $usuario->correo = $request->input('correo');
             $usuario->telefono = $request->input('telefono');
 
-            dd( $usuario->nombre_usuario . $usuario->nombre . $usuario->apellidos . $usuario->contrasena . $usuario->correo . $usuario->telefono);
             // Manejar la subida de la imagen
             if ($request->hasFile('imagenPerfil')) {
                 $imagenPerfil = $request->file('imagenPerfil');
                 $nombre = time().'.'.$imagenPerfil->getClientOriginalExtension();
                 $destino = public_path('/assets/img/imagenesPerfil');
+                dd($destino . $nombre);
                 $imagenPerfil->move($destino, $nombre);
 
                 // Redimensionar la imagen antes de guardarla
