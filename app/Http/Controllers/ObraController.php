@@ -149,7 +149,7 @@ public function eliminarObraPerfil($id)
     $obra->delete();
 
     // Redirecciona de vuelta a la página de ver obras
-    return redirect()->back()->with('success', 'Obra eliminada exitosamente.');
+        return redirect()->route('perfil_vista')->with('success', 'Obra eliminada exitosamente.');
 }
 
 public function actualizarObraPerfil(Request $request, $id)
