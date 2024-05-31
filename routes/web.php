@@ -83,11 +83,11 @@ Route::get('/', function () {
 Route::get('/', [ObraController::class, 'mostrarObras'])->name('index');
 
 // REEGISTRO
-Route::get('/registroForm', function () {
+/*Route::get('/registroForm', function () {
     return view('registroForm', ['titulo' => 'Registro']);
-})->name('registro');
+})->name('registro');*/
 //Route::post('/registro', [RegistroController::class, 'crearUsuario'])->name('crearUsuario');
-Route::post('registro', [RegistroController::class, 'procesarFormulario'])->name('registroProcesado');
+Route::post('registro', [RegistroController::class, 'crearUsuario'])->name('registroProcesado');
 Route::get('registro', [RegistroController::class, 'verFormulario'])->name('registro');
 Route::get('/cerrar-sesion', [InicioController::class, 'cerrarSesion'])->name('cerrar_sesion');
 
