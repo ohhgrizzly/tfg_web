@@ -92,7 +92,7 @@ class PerfilController extends Controller
         if ($request->filled('telefono')) {
             $usuario->telefono = $request->telefono;
         }
-        dd($request->hasFile('imagenPerfil'));
+        dd('ENTRA A LA FUNCION');
         
         // Manejar la subida de la imagen de perfil
         if ($request->hasFile('imagenPerfil')) {
