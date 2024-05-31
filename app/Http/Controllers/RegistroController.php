@@ -46,39 +46,30 @@ class RegistroController extends Controller
             'imagenPerfil.max' => '- El tamaño máximo del archivo es de :max kilobytes.',
         ]);
 
-            $nombreUsuarioExistente = Usuario::where('nombre_usuario', $request->input('nombre_usuario'))->exists();
-            $correoExistente = Usuario::where('correo', $request->input('correo'))->exists();
-
-            if ($nombreUsuarioExistente) {
-                dd('Nombre en uso');
-                return redirect()->back()->with('error', 'El nombre de usuario ya está en uso.');
-            }
-
-            if ($correoExistente) {
-                dd('Correo en uso');
-                return redirect()->back()->with('error', 'El correo electrónico ya está en uso.');
-            }
-
+            // Crear un nuevo usuario con los datos del formulario
             $usuario = new Usuario();
             $usuario->nombre_usuario = $request->input('nombre_usuario');
             $usuario->nombre = $request->input('nombre');
             $usuario->apellidos = $request->input('apellidos');
-            $usuario->contrasena = Hash::make($request->input('contrasena')); // Asegúrate de hashear la contraseña
+            $usuario->contrasena = $request->input('contrasena');
             $usuario->correo = $request->input('correo');
             $usuario->telefono = $request->input('telefono');
 
+            // Manejar la subida de la imagen
             if ($request->hasFile('imagenPerfil')) {
                 $imagenPerfil = $request->file('imagenPerfil');
                 $nombre = time().'.'.$imagenPerfil->getClientOriginalExtension();
                 $destino = public_path('/assets/img/imagenesPerfil');
                 $imagenPerfil->move($destino, $nombre);
 
+                // Redimensionar la imagen antes de guardarla
                 $rutaImagen = public_path('/assets/img/imagenesPerfil/'.$nombre);
                 list($ancho, $alto) = getimagesize($rutaImagen);
-                $nuevoAncho = 600;
-                $nuevoAlto = 600;
+                $nuevoAncho = 600; // Ajusta el ancho deseado
+                $nuevoAlto = 600; // Ajusta el alto deseado
                 $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
+                // Crear imagen según la extensión
                 $extension = $imagenPerfil->getClientOriginalExtension();
                 if ($extension === 'jpeg' || $extension === 'jpg') {
                     $imagenOriginal = imagecreatefromjpeg($rutaImagen);
@@ -86,9 +77,11 @@ class RegistroController extends Controller
                     $imagenOriginal = imagecreatefrompng($rutaImagen);
                 }
 
+                // Redimensionar la imagen
                 if ($imagenOriginal) {
                     imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
+                    // Guardar la imagen redimensionada
                     if ($extension === 'jpeg' || $extension === 'jpg') {
                         imagejpeg($imagenRedimensionada, $rutaImagen, 100);
                     } elseif ($extension === 'png') {
