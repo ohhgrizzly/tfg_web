@@ -11,7 +11,7 @@ class ObrasSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
     $obras = [
         // ÓLEO
