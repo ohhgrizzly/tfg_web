@@ -37,10 +37,12 @@ class PerfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function actualizarPerfil(Request $request)
+    public function actualizarPerfil(Request $request, $id)
 {
     // Verificar si el usuario está autenticado
     if (Auth::check()) {
+        
+        
         // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'nullable|unique:usuarios|min:3|regex:/^[a-zA-Z0-9\s]+$/',
@@ -62,9 +64,8 @@ class PerfilController extends Controller
             'telefono.regex' => '- El teléfono no puede contener caracteres especiales, espacios en blanco o letras.', 
         ]);
 
-        // Obtener el usuario actualmente autenticado
-        $usuario = Auth::user();
-
+        // Obtener el usuario 
+        $usuario = Usuario::findOrFail($id);
         // Verificar si la contraseña proporcionada es correcta
         if (!Hash::check($request->contrasena, $usuario->contrasena)) {
             return back()->withErrors([
