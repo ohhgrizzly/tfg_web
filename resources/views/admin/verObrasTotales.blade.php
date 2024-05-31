@@ -31,7 +31,7 @@
                     <div class="col-lg-3 col-md-6 portfolio-item filter-{{ $obra->subcategoria->categoria->id }}">
                         <div class="portfolio-wrap">
                             <a href="{{ route('obras.mostrar', ['id' => $obra->id]) }}">
-                                <img src="{{ secure_asset('assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
+                                <img src="{{ secure_asset('storage/assets/img/imagenesObras/' . $obra->imagen) }}" class="img-fluid" alt="">
                                 <div class="portfolio-info">
                                     <h4>{{ $obra->titulo }}</h4>
                                     <p>Autor: {{ $obra->autor }}</p>
