@@ -16,36 +16,7 @@ class RegistroController extends Controller
 
     public function crearUsuario(Request $request)
     {
-        $request->validate([
-            'nombre_usuario' => 'required|unique:usuarios|min:3|regex:/^[a-zA-Z0-9]+$/',
-            'nombre' => 'required|regex:/^[a-zA-Z0-9]+$/',
-            'apellidos' => 'required|regex:/^[a-zA-Z0-9]+$/',
-            'contrasena' => 'required|min:6',
-            'correo' => 'required|email|unique:usuarios',
-            'telefono' => 'nullable|numeric|unique:usuarios|regex:/^[a-zA-Z0-9]+$/',
-            'imagenPerfil' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ], [
-            'nombre_usuario.required' => '- El nombre de usuario es obligatorio.',
-            'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
-            'nombre_usuario.min' => '- El nombre de usuario debe tener al menos :min caracteres.',
-            'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales o espacios en blanco.',
-            'nombre.required' => '- El nombre es obligatorio.',
-            'apellidos.required' => '- Los apellidos son obligatorios.',
-            'apellidos.regex' => '- Los apellidos no pueden contener caracteres especiales o espacios en blanco.',
-            'contrasena.required' => '- La contraseña es obligatoria.',
-            'contrasena.min' => '- La contraseña debe tener al menos :min caracteres.',
-            'correo.required' => '- El correo electrónico es obligatorio.',
-            'correo.email' => '- El correo electrónico no es válido.',
-            'correo.unique' => '- El correo electrónico ya está en uso.',
-            'telefono.numeric' => '- El teléfono debe ser un valor numérico.',
-            'telefono.unique' => '- El teléfono ya está en uso.',
-            'telefono.regex' => '- El teléfono no puede contener caracteres especiales o espacios en blanco.',
-            'imagenPerfil.required' => '- La imagen de perfil es obligatoria.',
-            'imagenPerfil.image' => '- El archivo debe ser una imagen.',
-            'imagenPerfil.mimes' => '- El archivo debe ser de tipo: jpeg, png, jpg, gif.',
-            'imagenPerfil.max' => '- El tamaño máximo del archivo es de :max kilobytes.',
-        ]);
-
+    
             // Crear un nuevo usuario con los datos del formulario
             $usuario = new Usuario();
             $usuario->nombre_usuario = $request->input('nombre_usuario');
