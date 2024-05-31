@@ -26,7 +26,7 @@ class RegistroController extends Controller
             $usuario->correo = $request->input('correo');
             $usuario->telefono = $request->input('telefono');
 
-            dd( $usuario->nombre_usuario);
+            dd( $usuario->nombre_usuario . $usuario->nombre . $usuario->apellidos . $usuario->contrasena . $usuario->correo . $usuario->telefono);
             // Manejar la subida de la imagen
             if ($request->hasFile('imagenPerfil')) {
                 $imagenPerfil = $request->file('imagenPerfil');
