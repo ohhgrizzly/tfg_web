@@ -36,13 +36,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre_usuario }}" value="{{ Auth::user()->nombre_usuario }}" name="nombre_usuario" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre_usuario }}" name="nombre_usuario" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-id-badge"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre }}" name="nombre" aria-label="Name" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" placeholder="{{ Auth::user()->nombre }}" value="{{ Auth::user()->nombre }}"name="nombre" aria-label="Name" aria-describedby="basic-addon1">
                                 </div>
                                 <div class="input-group mb-3">
                                 <div class="input-group-prepend">
