@@ -49,7 +49,6 @@ class PerfilController extends Controller
             'correo' => 'nullable|email|unique:usuarios,correo,' . Auth::id(),
             'telefono' => 'nullable|numeric|regex:/^[0-9]+$/|unique:usuarios,telefono,' . Auth::id(),
             'contrasena' => 'required|confirmed',
-            'imagenPerfil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nombre_usuario.unique' => '- El nombre de usuario ya está en uso.',
             'nombre_usuario.regex' => '- El nombre de usuario no puede contener caracteres especiales.',
@@ -61,9 +60,6 @@ class PerfilController extends Controller
             'correo.unique' => '- El correo electrónico ya está en uso.',
             'telefono.unique' => '- El teléfono ya está en uso.',
             'telefono.regex' => '- El teléfono no puede contener caracteres especiales, espacios en blanco o letras.', 
-            'imagenPerfil.image' => '- El archivo debe ser una imagen.',
-            'imagenPerfil.mimes' => '- El archivo debe ser de tipo: jpeg, png, jpg, gif.',
-            'imagenPerfil.max' => '- El tamaño máximo del archivo es de :max kilobytes.',
         ]);
 
         // Obtener el usuario actualmente autenticado
@@ -93,42 +89,6 @@ class PerfilController extends Controller
             $usuario->telefono = $request->telefono;
         }
         dd('ENTRA A LA FUNCION');
-        
-        // Manejar la subida de la imagen de perfil
-        if ($request->hasFile('imagenPerfil')) {
-            $imagenPerfil = $request->file('imagenPerfil');
-            $nombre = time() . '_' . $imagenPerfil->getClientOriginalName();
-            $ruta = $imagenPerfil->storeAs('assets/img/imagenesPerfil', $nombre, 'public');
-
-            // Redimensionar la imagen antes de guardarla
-            $rutaImagen = storage_path('app/public/' . $ruta);
-            list($ancho, $alto) = getimagesize($rutaImagen);
-            $nuevoAncho = 600; // Ajusta el ancho deseado
-            $nuevoAlto = 600; // Ajusta el alto deseado
-            $imagenRedimensionada = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-            // Crear imagen según la extensión
-            $extension = $imagenPerfil->getClientOriginalExtension();
-            if ($extension === 'jpeg' || $extension === 'jpg') {
-                $imagenOriginal = imagecreatefromjpeg($rutaImagen);
-            } elseif ($extension === 'png') {
-                $imagenOriginal = imagecreatefrompng($rutaImagen);
-            }
-
-            // Redimensionar la imagen
-            if ($imagenOriginal) {
-                imagecopyresampled($imagenRedimensionada, $imagenOriginal, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-                // Guardar la imagen redimensionada
-                if ($extension === 'jpeg' || $extension === 'jpg') {
-                    imagejpeg($imagenRedimensionada, $rutaImagen, 100);
-                } elseif ($extension === 'png') {
-                    imagepng($imagenRedimensionada, $rutaImagen, 9);
-                }
-
-                $usuario->imagenPerfil = $nombre;
-            }
-        }
         
         $usuario->save();
 
